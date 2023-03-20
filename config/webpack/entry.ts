@@ -6,5 +6,5 @@
 // This will be removed from Webpack 5 onward.
 // See: https://github.com/webpack-contrib/mini-css-extract-plugin/issues/151
 
-import '../../src/assets/javascripts/main.js';
-import '../../src/assets/stylesheets/main.scss';
+import "../../src/assets/javascripts/main.ts";
+import "../../src/assets/stylesheets/main.scss";
