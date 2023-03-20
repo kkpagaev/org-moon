@@ -1,9 +1,7 @@
 import "bootstrap";
-import Amber from "amber";
-import Logo from "../images/logo.svg";
 
-function foo(s: string) {
-  console.log(s);
-}
+import { marked } from "marked";
 
-foo("test");
+// document.getElementsByClassName("container")[1].innerHTML = marked(
+// "# Marked in the browser\n\nRendered by \n- [X] **marked**."
+// );

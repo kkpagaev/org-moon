@@ -1,7 +1,37 @@
-$primary: #f4994b;
+$primary: #dcd7ba;
 
-@import '~bootstrap/scss/bootstrap';
+$background: #1f1f28;
+$foreground: #c8c093;
 
-.main {
-  padding-top: 20px;
+$green-foreground: #98bb6c;
+$green-dimed: #76946a;
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  font-family: "Roboto Mono";
+  background-color: $background;
+  color: $foreground;
+}
+
+.navbar {
+  background-color: #223249 !important;
+}
+// type text email password
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background-color: #363646 !important;
+  color: $primary !important;
+  border-color: #16161d !important;
+}
+
+.btn-success {
+  background-color: $green !important;
+  border-color: $green !important;
+}
+
+.btn-success:hover {
+  background-color: $green-dimed !important;
+  border-color: $green-dimed !important;
 }
