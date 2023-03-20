@@ -38,6 +38,19 @@ services:
     volumes:
       - db:/var/lib/postgres/data
 
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    links:
+      - db:db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@user.user
+      PGADMIN_DEFAULT_USER: user
+      PGADMIN_DEFAULT_PASSWORD: user
+    ports:
+      - "8080:80"
+
 volumes:
   db:
   nodes:

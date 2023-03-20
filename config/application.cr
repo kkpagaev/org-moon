@@ -18,6 +18,8 @@ require "./initializers/**"
 # require "../plugins/plugins"
 
 # Start Generator Dependencies: Don't modify.
+require "../src/models/**"
+require "../src/pipes/**"
 # End Generator Dependencies
 
 require "../src/controllers/application_controller"
