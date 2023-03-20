@@ -1,0 +1,35 @@
+secret_key_base: M4_p435pnbp8HJiHf3ODfnw6x7UKzN4Rld7kIyigaUI
+port: 3000
+name: amber-moon
+
+logging:
+  severity: debug
+  colorize: true
+  filter:
+    - password
+    - confirm_password
+
+host: 0.0.0.0
+port_reuse: true
+process_count: 1
+# ssl_key_file:
+# ssl_cert_file:
+redis_url: "redis://localhost:6379"
+database_url: postgres://postgres:password@localhost:5432/amber_moon_development
+auto_reload: true
+
+session:
+  key: amber.session
+  store: signed_cookie
+  expires: 0
+
+smtp:
+  enabled: false
+
+pipes:
+  static:
+    headers:
+      "Cache-Control": "no-store"
+
+secrets:
+  description: Store your development secrets credentials and settings here.
