@@ -11,10 +11,10 @@ html
     link rel="icon" type="image/x-icon" href="/favicon.ico"
 
   body
+    ninja-keys
     nav.navbar.navbar-expand.navbar-dark.bg-primary.mb-3
       .container
         a.navbar-brand href="/"
-          img src="/dist/images/logo.svg" height="30" alt="Amber logo"
         ul.navbar-nav.mr-auto
           == render(partial: "layouts/_nav.slang")
         ul.navbar-nav
@@ -25,7 +25,7 @@ html
         div class="alert alert-#{key}" role="alert"
           = flash[key]
 
-      .main== content
+    .main== content
 
     script src="/dist/main.bundle.js"
 

@@ -1,37 +1,82 @@
-$primary: #dcd7ba;
+$blue: #7e9cd8;
+$indigo: #957fb8;
 
-$background: #1f1f28;
-$foreground: #c8c093;
+$purple: #938aa9;
 
-$green-foreground: #98bb6c;
-$green-dimed: #76946a;
+$pink: #d27e99;
+$red: #ff5d62;
+
+$orange: #ffa066;
+$yellow: #dca561;
+$green: #76946a;
+$teal: #6a9589;
+$cyan: #7aa89f;
+$white: #c8c093;
+$gray: #717c7c;
+$gray-dark: #727169;
+$primary: #363646;
+$secondary: #1f1f28;
+$success: #2b3328;
+$info: #54546d;
+$warning: #dca561;
+$danger: #c34043;
+$light: #dcd7ba;
+$dark: #252535;
 
 @import "~bootstrap/scss/bootstrap";
 
 body {
-  font-family: "Roboto Mono";
-  background-color: $background;
-  color: $foreground;
+  background-color: #1f1f28;
+  color: #dcd7ba;
+}
+
+a {
+  color: #2d4f67;
+}
+
+a:hover {
+  color: $light;
 }
 
 .navbar {
-  background-color: #223249 !important;
-}
-// type text email password
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  background-color: #363646 !important;
-  color: $primary !important;
-  border-color: #16161d !important;
+  margin-bottom: 0 !important;
 }
 
-.btn-success {
-  background-color: $green !important;
-  border-color: $green !important;
+.editor {
+  padding: 0.6em;
+  display: flex;
+  height: calc(100vh - 74px);
+  .pane {
+    display: flex;
+    flex-basis: 50%;
+    margin: 0.6em;
+    display: flex;
+    height: 100%;
+    border: 0;
+    color: #dcd7ba;
+  }
+  #markdown {
+    padding: 0.6em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: auto;
+    background-color: #16161d;
+    flex-grow: 1;
+    flex-shrink: 1;
+    resize: none;
+  }
+
+  #preview {
+    padding: 0.6em;
+    // border: 1px solid #ccc;
+    background-color: #16161d;
+    overflow: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
 }
 
-.btn-success:hover {
-  background-color: $green-dimed !important;
-  border-color: $green-dimed !important;
+textarea {
+  background-color: inherit;
+  color: inherit;
 }
