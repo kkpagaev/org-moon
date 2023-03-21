@@ -5,9 +5,8 @@ import { parse } from "./markdown"
 
 const preview = document.getElementById("preview")
 if (preview) {
-  preview.innerHTML = parse(
-    "# Marked in the browser \n\nRendered by :rose: \n- [X] **marked**."
-  )
+  const markdown = document.getElementById("markdown") as HTMLTextAreaElement
+  preview.innerHTML = parse(markdown.value)
 }
 
 const markdown = document.getElementById("markdown")

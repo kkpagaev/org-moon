@@ -23,6 +23,8 @@ $danger: #c34043;
 $light: #dcd7ba;
 $dark: #252535;
 
+$yellow: #ff9e3b;
+
 $red: #e82424;
 @import "~bootstrap/scss/bootstrap";
 @import "~css.gg/icons/all.css";
@@ -48,13 +50,17 @@ a:hover {
   margin-bottom: 0 !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .editor {
   padding: 0.6em;
   display: flex;
   height: calc(100vh - 74px);
   .pane {
     display: flex;
-    flex-basis: 50%;
+    flex-basis: 100%;
     margin: 0.6em;
     display: flex;
     height: 100%;
@@ -82,6 +88,14 @@ a:hover {
     flex-shrink: 1;
     hr {
       background-color: $white;
+    }
+
+    h1 {
+      color: $red;
+    }
+
+    code {
+      color: $yellow;
     }
   }
 }

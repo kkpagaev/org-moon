@@ -9,6 +9,9 @@ import emoji from "node-emoji"
 // },
 // })
 
+marked.setOptions({
+  headerIds: false,
+})
 export const parse = (markdown: string) => {
   const replacer = (match: string) => emoji.emojify(match)
   markdown = markdown.replace(/(:.*:)/g, replacer)
