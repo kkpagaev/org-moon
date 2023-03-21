@@ -6,6 +6,10 @@
 docker-compose logs app --follow --no-log-prefix
 ```
 
+```bash
+docker-compose exec db psql -U postgres -W amber_moon_development
+```
+
 ```bash 
 docker-compose down && docker-compose up -d
 ```

@@ -48,11 +48,11 @@ Amber::Server.configure do
     patch "/profile", UserController, :update
     get "/signout", SessionController, :delete
     resources "books", BookController
-    resources "notes", NotesController
+    resources "notes", NoteController
   end
 
   routes :api do
-    post "/api/notes", NotesController, :create
+    post "/api/notes", NoteController, :create
   end
 
   routes :static do
