@@ -25,7 +25,8 @@ html
         div class="alert alert-#{key}" role="alert"
           = flash[key]
 
-    .main== content
+    .container
+      .main== content
 
     script src="/dist/main.bundle.js"
 

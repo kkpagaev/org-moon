@@ -42,6 +42,8 @@ Amber::Server.configure do
     post "/registration", UserController, :create
 
     resources "books", BookController
+
+    resources "notes", NotesController
   end
 
   routes :auth do
