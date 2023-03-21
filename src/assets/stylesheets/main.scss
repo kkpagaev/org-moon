@@ -39,6 +39,22 @@ body {
   color: #dcd7ba;
 }
 
+.btn.disabled {
+  background-color: $background;
+  color: #dcd7ba;
+  pointer-events: none;
+
+  &:hover {
+    background-color: $background;
+    color: #dcd7ba;
+  }
+
+  &:focus {
+    background-color: $background;
+    color: #dcd7ba;
+  }
+}
+
 a {
   color: #2d4f67;
 }

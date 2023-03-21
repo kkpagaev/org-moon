@@ -5,18 +5,21 @@ let isSaved = false
 
 const setSaved = (saved: boolean) => {
   isSaved = saved
+  console.log("setSaved", saved)
   if (saved) {
     $("#preview").removeClass("changed")
-    $("#save").addClass("disabled")
+    $("#save-button").addClass("disabled")
     window.onbeforeunload = null
   } else {
     window.onbeforeunload = () => {
       return "You have unsaved changes. Are you sure you want to leave?"
     }
     $("#preview").addClass("changed")
-    $("#save").removeClass("disabled")
+    $("#save-button").removeClass("disabled")
   }
 }
+
+setSaved(true)
 
 const save = () => {
   const markdown = $("#markdown").val()
@@ -34,11 +37,16 @@ if (markdown) {
   markdown.addEventListener("keyup", (event) => {
     const target = event.target as HTMLTextAreaElement
 
-    if (!isSaved) {
+    if (isSaved) {
       setSaved(false)
     }
     if (preview) {
       preview.innerHTML = parse(target.value)
     }
   })
+}
+
+const saveButton = document.getElementById("save-button")
+if (saveButton) {
+  saveButton.addEventListener("click", save)
 }
