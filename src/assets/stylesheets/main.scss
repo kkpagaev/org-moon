@@ -60,6 +60,7 @@ a:hover {
   display: flex;
   height: calc(100vh - 1.2em);
   .pane {
+    position: relative;
     display: flex;
     flex-basis: 100%;
     margin: 0.6em;
@@ -67,6 +68,12 @@ a:hover {
     height: 100%;
     border: 0;
     color: #dcd7ba;
+    .buttons {
+      top: 0.3em;
+      right: 0.3em;
+      margin: 0.3em;
+      position: absolute;
+    }
   }
   .markdown {
     padding: 0.6em;
