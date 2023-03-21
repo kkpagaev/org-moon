@@ -40,6 +40,8 @@ Amber::Server.configure do
     post "/session", SessionController, :create
     get "/signup", UserController, :new
     post "/registration", UserController, :create
+
+    resources "books", BookController
   end
 
   routes :auth do
