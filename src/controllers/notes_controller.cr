@@ -23,7 +23,9 @@ class NotesController < ApplicationController
   end
 
   def create
+    # return {foo: "bar"}.to_json if is_api_request?
     notes = Notes.new notes_params.validate!
+    notes.user_id = current_user.not_nil!.id
     if notes.save
       redirect_to action: :index, flash: {"success" => "Notes has been created."}
     else
@@ -49,7 +51,6 @@ class NotesController < ApplicationController
 
   private def notes_params
     params.validation do
-      required :user_id
       required :book_id
       required :title
       required :body

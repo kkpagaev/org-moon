@@ -1,3 +1,4 @@
+import $ from "jquery"
 import "bootstrap"
 import "./keys/index"
 import { parse } from "./markdown"

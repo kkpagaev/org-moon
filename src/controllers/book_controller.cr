@@ -24,6 +24,7 @@ class BookController < ApplicationController
 
   def create
     book = Book.new book_params.validate!
+    book.user_id = current_user.not_nil!.id
     if book.save
       redirect_to action: :index, flash: {"success" => "Book has been created."}
     else
@@ -49,7 +50,6 @@ class BookController < ApplicationController
 
   private def book_params
     params.validation do
-      required :user_id
       required :title
     end
   end

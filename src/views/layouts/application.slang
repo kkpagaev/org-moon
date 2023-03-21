@@ -32,3 +32,21 @@ html
 
     - if Amber.settings.auto_reload?
       script src="/js/client_reload.js"
+
+ul#help.hidden
+  li
+    span f
+    span find
+  li
+    span a
+    span add new note
+  li
+    span d
+    span delete note
+  li
+    span s
+    span save note
+  li
+    span c 
+    span open calendar
+

@@ -11,7 +11,7 @@ $yellow: #dca561;
 $green: #76946a;
 $teal: #6a9589;
 $cyan: #7aa89f;
-$white: #c8c093;
+$white: #dcd7ba;
 $gray: #717c7c;
 $gray-dark: #727169;
 $primary: #363646;
@@ -23,6 +23,7 @@ $danger: #c34043;
 $light: #dcd7ba;
 $dark: #252535;
 
+$red: #e82424;
 @import "~bootstrap/scss/bootstrap";
 @import "~css.gg/icons/all.css";
 @import url("https://css.gg/css");
@@ -69,6 +70,7 @@ a:hover {
     flex-grow: 1;
     flex-shrink: 1;
     resize: none;
+    border-color: #dcd7ba;
   }
 
   #preview {
@@ -78,6 +80,9 @@ a:hover {
     overflow: auto;
     flex-grow: 1;
     flex-shrink: 1;
+    hr {
+      background-color: $white;
+    }
   }
 }
 
@@ -88,4 +93,24 @@ textarea {
 
 .table {
   background-color: #dcd7ba;
+}
+
+#help {
+  &.hidden {
+    display: none;
+  }
+  margin: 0;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: $red;
+  list-style-type: none;
+  // first span in li
+  li > span:first-child {
+    display: inline-block;
+    width: 20px;
+    color: $white;
+    font-weight: bold;
+  }
 }

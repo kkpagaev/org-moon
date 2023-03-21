@@ -2,6 +2,14 @@
 
 [![Amber Framework](https://img.shields.io/badge/using-amber_framework-orange.svg)](https://amberframework.org)
 
+```bash
+docker-compose logs app --follow --no-log-prefix
+```
+
+```bash 
+docker-compose down && docker-compose up -d
+```
+
 This is a project written using [Amber](https://amberframework.org). Enjoy!
 
 ## Getting Started

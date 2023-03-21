@@ -40,10 +40,6 @@ Amber::Server.configure do
     post "/session", SessionController, :create
     get "/signup", UserController, :new
     post "/registration", UserController, :create
-
-    resources "books", BookController
-
-    resources "notes", NotesController
   end
 
   routes :auth do
@@ -51,9 +47,12 @@ Amber::Server.configure do
     get "/profile/edit", UserController, :edit
     patch "/profile", UserController, :update
     get "/signout", SessionController, :delete
+    resources "books", BookController
+    resources "notes", NotesController
   end
 
   routes :api do
+    post "/api/notes", NotesController, :create
   end
 
   routes :static do
