@@ -22,6 +22,11 @@ class NoteController < ApplicationController
     render "edit.slang"
   end
 
+  def whiteboard
+    @note = Note.first! "WHERE user_id = ?", [current_user.try &.id] 
+    render "edit.slang"
+  end
+
   def build_markdown(name, tags, content)
     "# #{name}  \n#{tags.split(",").map do |tag| '#' + tag end .join(" ")}  \n#{content}"
   end
@@ -48,7 +53,7 @@ class NoteController < ApplicationController
     note.title = parser.title
     save_tags note.id, parser.tags
     if note.save
-      redirect_to action: :index, flash: {"success" => "Note has been updated."}
+      redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been updated."}
     else
       flash[:danger] = "Could not update Note!"
       render "edit.slang"

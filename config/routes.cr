@@ -34,8 +34,6 @@ Amber::Server.configure do
   end
 
   routes :web do
-    get "/", HomeController, :index
-
     get "/signin", SessionController, :new
     post "/session", SessionController, :create
     get "/signup", UserController, :new
@@ -48,7 +46,9 @@ Amber::Server.configure do
     patch "/profile", UserController, :update
     get "/signout", SessionController, :delete
     resources "books", BookController
-    resources "notes", NoteController
+    resources "notes", NoteController, except: [:whiteboard]
+
+    get "/", NoteController, :whiteboard
   end
 
   routes :api do
