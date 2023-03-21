@@ -24,9 +24,14 @@ $light: #dcd7ba;
 $dark: #252535;
 
 @import "~bootstrap/scss/bootstrap";
+@import "~css.gg/icons/all.css";
+@import url("https://css.gg/css");
+
+$background-darker: #16161d;
+$background: #1f1f28;
 
 body {
-  background-color: #1f1f28;
+  background-color: $background;
   color: #dcd7ba;
 }
 
@@ -60,7 +65,7 @@ a:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow: auto;
-    background-color: #16161d;
+    background-color: $background-darker;
     flex-grow: 1;
     flex-shrink: 1;
     resize: none;
@@ -69,7 +74,7 @@ a:hover {
   #preview {
     padding: 0.6em;
     // border: 1px solid #ccc;
-    background-color: #16161d;
+    background-color: $background-darker;
     overflow: auto;
     flex-grow: 1;
     flex-shrink: 1;
