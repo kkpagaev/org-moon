@@ -24,11 +24,20 @@ class UserController < ApplicationController
 
     if user.save
       session[:user_id] = user.id
+      create_default_book user.id
       redirect_to "/", flash: {"success" => "Created User successfully."}
     else
       flash[:danger] = "Could not create User!"
       render "new.slang"
     end
+  end
+
+  def create_default_book(user_id)
+    default = Book.find_or_create_by title: "default", user_id: user_id
+    note = Note.new  body: "# Whiteboard  \n\n", title: "Whiteboard", user_id: user_id, book_id: default.id
+    note.save
+    Book.find_or_create_by title: "diary", user_id: user_id
+    Book.find_or_create_by title: "calendar", user_id: user_id
   end
 
   def update
