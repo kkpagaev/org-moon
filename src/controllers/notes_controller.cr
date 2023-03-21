@@ -22,10 +22,23 @@ class NoteController < ApplicationController
     render "edit.slang"
   end
 
+  def build_markdown(name, tags, content)
+    <<-MARKDOWN 
+      # #{name}
+      #{tags.split(",").map do |tag|
+      '#' + tag + ' '
+      end .join(" ")} 
+
+      #{content}
+    MARKDOWN
+  end
+
   def create
     # return {foo: "bar"}.to_json if is_api_request?
     note = Note.new notes_params.validate!
     note.user_id = current_user.try &.id
+    note.body = build_markdown(params[:title], params[:tags], params[:body])
+
     if note.save
       save_tags(note.id)
       redirect_to action: :index, flash: {"success" => "Note has been created."}

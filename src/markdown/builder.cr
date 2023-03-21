@@ -16,8 +16,7 @@ class Markdown::Builder
   def build() : String
     <<-MARKDOWN 
       # #{name}
-
-      #{get_tags_line}
+      #{get_tags_line} 
 
       #{content}
     MARKDOWN
