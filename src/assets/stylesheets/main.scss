@@ -26,6 +26,7 @@ $dark: #252535;
 $yellow: #ff9e3b;
 
 $red: #e82424;
+
 @import "~bootstrap/scss/bootstrap";
 @import "~css.gg/icons/all.css";
 @import url("https://css.gg/css");
@@ -57,7 +58,7 @@ a:hover {
 .editor {
   padding: 0.6em;
   display: flex;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 1.2em);
   .pane {
     display: flex;
     flex-basis: 100%;
@@ -67,27 +68,37 @@ a:hover {
     border: 0;
     color: #dcd7ba;
   }
-  #markdown {
+  .markdown {
     padding: 0.6em;
-    border: 1px solid #ccc;
+    border: 1px solid $success;
     border-radius: 4px;
     overflow: auto;
     background-color: $background-darker;
     flex-grow: 1;
     flex-shrink: 1;
     resize: none;
-    border-color: #dcd7ba;
+    outline: none;
+    &:focus {
+      border-color: $background-darker;
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    transition: border-color 0.2s ease-in-out;
   }
 
-  #preview {
+  .preview {
     padding: 0.6em;
     // border: 1px solid #ccc;
     background-color: $background-darker;
+    border-radius: 4px;
     overflow: auto;
     flex-grow: 1;
     flex-shrink: 1;
+    border: 1px solid $background-darker;
+    border-radius: 4px;
     hr {
       background-color: $white;
+      height: 2px;
     }
 
     h1 {
@@ -96,6 +107,11 @@ a:hover {
 
     code {
       color: $red;
+    }
+
+    &.changed {
+      border-color: #76946a;
+      transition: border-color 0.2s ease-in-out;
     }
   }
 }

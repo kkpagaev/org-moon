@@ -11,6 +11,7 @@ import emoji from "node-emoji"
 
 marked.setOptions({
   headerIds: false,
+  gfm: true,
 })
 export const parse = (markdown: string) => {
   const replacer = (match: string) => emoji.emojify(match)
