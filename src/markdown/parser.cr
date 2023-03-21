@@ -1,6 +1,7 @@
 class MarkdownParser
   property title : String = ""
   property tags : Array(String) = [] of String
+  property text : String = ""
 
   class InvalidMarkdown < Exception
   end
@@ -23,8 +24,9 @@ class MarkdownParser
     @title = @text.lines.first[2..-1].strip
   end
 
+  # TODO refactor
   private def process_tags
-    tagline = @text.lines[1]
-    @tags = tagline.split(" ").map { |tag| tag[1..-1] }
+    tagline = @text.lines[1].strip.split(" ").select { |word| word != "" }
+    @tags = tagline.map { |tag| tag[1..-1] }
   end
 end

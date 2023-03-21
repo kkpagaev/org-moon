@@ -1,8 +1,8 @@
 class NoteController < ApplicationController
-  getter notes = Note.new
+  getter note = Note.new
 
   before_action do
-    only [:show, :edit, :update, :destroy] { set_notes }
+    only [:show, :edit, :update, :destroy] { set_note }
   end
 
   def index
@@ -23,14 +23,7 @@ class NoteController < ApplicationController
   end
 
   def build_markdown(name, tags, content)
-    <<-MARKDOWN 
-      # #{name}
-      #{tags.split(",").map do |tag|
-      '#' + tag + ' '
-      end .join(" ")} 
-
-      #{content}
-    MARKDOWN
+    "# #{name}  \n#{tags.split(",").map do |tag| '#' + tag end .join(" ")}  \n#{content}"
   end
 
   def create
@@ -40,8 +33,9 @@ class NoteController < ApplicationController
     note.body = build_markdown(params[:title], params[:tags], params[:body])
 
     if note.save
-      save_tags(note.id)
-      redirect_to action: :index, flash: {"success" => "Note has been created."}
+      tags = params[:tags].split(",")
+      save_tags note.id, tags
+      redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been created."}
     else
       flash[:danger] = "Could not create Note!"
       render "new.slang"
@@ -49,8 +43,11 @@ class NoteController < ApplicationController
   end
 
   def update
-    notes.set_attributes notes_params.validate!
-    if notes.save
+    note.set_attributes update_note_params.validate!
+    parser = MarkdownParser.new note.body.not_nil!
+    note.title = parser.title
+    save_tags note.id, parser.tags
+    if note.save
       redirect_to action: :index, flash: {"success" => "Note has been updated."}
     else
       flash[:danger] = "Could not update Note!"
@@ -59,7 +56,7 @@ class NoteController < ApplicationController
   end
 
   def destroy
-    notes.destroy
+    note.destroy
     redirect_to action: :index, flash: {"success" => "Note has been deleted."}
   end
 
@@ -72,18 +69,23 @@ class NoteController < ApplicationController
     end
   end
 
-  private def set_notes
-    @notes = Note.find! params[:id]
+  private def update_note_params
+    params.validation do
+      required :body
+    end
   end
 
-  private def save_tags(note_id)
-    names = params[:tags].split(",")
+  private def set_note
+    @note = Note.find! params[:id]
+  end
+
+  private def save_tags(note_id, tag_names : Array(String))
     tags = [] of Tag
-    names.each do |name|
-      tag = Tag.find_or_create_by(name: name)
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by name: name, user_id: current_user.try &.id
       tags << tag
     end
-    
+    Tagging.where(note_id: note_id).delete
     tags.each do |tag|
       tagging = Tagging.new note_id: note_id, tag_id: tag.id
       tagging.save

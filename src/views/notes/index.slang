@@ -13,14 +13,14 @@
         th Body
         th Actions
     tbody
-      - notes.each do |notes|
+      - notes.each do |note|
         tr
-          td = notes.user.id
-          td = notes.book.id
-          td = notes.title
-          td = notes.body
+          td = note.user.id
+          td = note.book.id
+          td = note.title
+          td = note.body
           td
             span
-              == link_to("Show", "/notes/#{notes.id}", class: "btn btn-info btn-sm")
-              == link_to("Edit", "/notes/#{notes.id}/edit", class: "btn btn-success btn-sm")
-              == link_to("Delete", "/notes/#{ notes.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+              == link_to("Show", "/notes/#{note.id}", class: "btn btn-info btn-sm")
+              == link_to("Edit", "/notes/#{note.id}/edit", class: "btn btn-success btn-sm")
+              == link_to("Delete", "/notes/#{ note.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")

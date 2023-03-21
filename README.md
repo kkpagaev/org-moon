@@ -7,6 +7,10 @@ docker-compose logs app --follow --no-log-prefix
 ```
 
 ```bash
+docker-compose restart app 
+```
+
+```bash
 docker-compose exec db psql -U postgres -W amber_moon_development
 ```
 
