@@ -38,6 +38,10 @@ Amber::Server.configure do
     post "/session", SessionController, :create
     get "/signup", UserController, :new
     post "/registration", UserController, :create
+
+    get "/calendar/index", CalendarController, :index
+    get "/calendar/:id/edit", CalendarController, :edit
+    patch "/calendar/update", CalendarController, :update
   end
 
   routes :auth do
