@@ -23,6 +23,9 @@ $danger: #c34043;
 $light: #dcd7ba;
 $dark: #252535;
 
+$font-dimmed: #716f6b;
+$font: #dcd7ba;
+
 $yellow: #ff9e3b;
 
 $red: #e82424;
@@ -33,6 +36,7 @@ $red: #e82424;
 
 $background-darker: #16161d;
 $background: #1f1f28;
+$background-lighter: #2a2a37;
 
 body {
   background-color: $background;
@@ -72,7 +76,6 @@ a:hover {
 }
 
 .editor {
-  padding: 0.6em;
   display: flex;
   height: calc(100vh - 1.2em);
 
@@ -193,4 +196,47 @@ textarea {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  &__sidebar {
+    background-color: $background-lighter;
+    color: #dcd7ba;
+    height: 100vh;
+    overflow: auto;
+    .sidebar {
+      .sidebar__menu {
+        &__item--active {
+          border-left: 2px solid $font;
+          a {
+            color: $font !important;
+          }
+        }
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        li {
+          padding: 0.6em;
+          font-size: 2em;
+          &:hover {
+            a {
+              color: $font;
+            }
+          }
+          a {
+            color: $font-dimmed;
+          }
+        }
+      }
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 0.6em;
+  }
 }

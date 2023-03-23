@@ -12,21 +12,16 @@ html
 
   body
     ninja-keys
-    nav.navbar.navbar-expand.navbar-dark.bg-primary.mb-3
-      .container
-        a.navbar-brand href="/"
-        ul.navbar-nav.mr-auto
-          == render(partial: "layouts/_nav.slang")
-        ul.navbar-nav
-            == render(partial: "layouts/_session.slang")
-
     .container
       - flash.each do |key, value|
         div class="alert alert-#{key}" role="alert"
           = flash[key]
 
-    .container
-      .main== content
+    .main
+      .main__sidebar
+        == render(partial: "layouts/_sidebar.slang")
+      .main__content
+        == content
 
     script src="/dist/main.bundle.js"
 
@@ -47,6 +42,6 @@ ul#help.hidden
     span s
     span save note
   li
-    span c 
+    span c
     span open calendar
 
