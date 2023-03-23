@@ -208,19 +208,40 @@ textarea {
     background-color: $background-lighter;
     color: #dcd7ba;
     height: 100vh;
-    overflow: auto;
     .sidebar {
       display: flex;
-      overflow: hidden;
       flex-direction: column;
       .sidebar__menu {
         align-items: center;
         display: flex;
         flex-direction: column;
-        &__item--active {
-          border-left: 2px solid $font;
-          a {
-            color: $font !important;
+        &__item {
+          position: relative;
+          &:hover {
+            .sidebar__menu__item__tooltip {
+              transition-delay: 0.5s;
+              visibility: visible !important;
+            }
+          }
+          &__tooltip {
+            visibility: hidden;
+            width: 120px;
+            background-color: $background-lighter;
+            color: $font-dimmed;
+            font-size: 0.3em;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 10000;
+            left: 115%;
+            top: 20%;
+          }
+          &--active {
+            border-left: 2px solid $font;
+            a {
+              color: $font !important;
+            }
           }
         }
         list-style-type: none;
