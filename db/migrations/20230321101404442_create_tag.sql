@@ -17,8 +17,8 @@ CREATE TABLE tagging (
   updated_at TIMESTAMP
 );
 
-CREATE INDEX tagging_tag_id_idx ON TABLE tagging (tag_id);
-CREATE INDEX tagging_note_id_idx ON TABLE tagging (note_id);
+CREATE INDEX tagging_tag_id_idx ON tagging (tag_id);
+CREATE INDEX tagging_note_id_idx ON tagging (note_id);
 
 -- +micrate Down
 DROP TABLE IF EXISTS tags;

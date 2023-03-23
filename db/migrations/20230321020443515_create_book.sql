@@ -2,6 +2,7 @@
 CREATE TABLE books (
   id BIGSERIAL PRIMARY KEY,
   user_id BIGINT,
+  is_system BOOLEAN DEFAULT FALSE,
   title TEXT,
   created_at TIMESTAMP,
   updated_at TIMESTAMP

@@ -4,8 +4,8 @@ CREATE TABLE events (
   title VARCHAR,
   description VARCHAR,
   note_id BIGINT,
-  from TIMESTAMP,
-  to TIMESTAMP,
+  start_at TIMESTAMP,
+  end_at TIMESTAMP,
   created_at TIMESTAMP,
   updated_at TIMESTAMP
 );

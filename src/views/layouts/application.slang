@@ -18,8 +18,9 @@ html
           = flash[key]
 
     .main
-      .main__sidebar
-        == render(partial: "layouts/_sidebar.slang")
+      - if (current_user = context.current_user)
+        .main__sidebar
+          == render(partial: "layouts/_sidebar.slang")
       .container-fluid.main__content
         == content
 

@@ -7,7 +7,8 @@ class Event < Granite::Base
   column id : Int64, primary: true
   column title : String
   column description : String
-  column from : Time
-  column to : Time?
+  column start_at : Time
+  column end_at : Time?
+
   timestamps
 end

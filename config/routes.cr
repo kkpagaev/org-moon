@@ -39,9 +39,6 @@ Amber::Server.configure do
     get "/signup", UserController, :new
     post "/registration", UserController, :create
 
-    get "/calendar/index", CalendarController, :index
-    get "/calendar/:id/edit", CalendarController, :edit
-    patch "/calendar/update", CalendarController, :update
   end
 
   routes :auth do
@@ -51,6 +48,10 @@ Amber::Server.configure do
     get "/signout", SessionController, :delete
     resources "books", BookController
     resources "notes", NoteController, except: [:whiteboard]
+
+    get "/calendar", CalendarController, :index
+    get "/calendar/:id/edit", CalendarController, :edit
+    patch "/calendar/:id/update", CalendarController, :update
 
     get "/", NoteController, :whiteboard
   end
