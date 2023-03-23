@@ -1,12 +1,10 @@
-require "./src/markdown/*"
+require "./config/application"
+
+date = "22.02.2022"
+start = "8:30"
+
+e = Event.new(title: "Test Event", description:  "This is a test event", start: start )
 
 
-      markdown = <<-MARKDOWN
-- 8:00 Breakfast  
-test  
-foo
-- 9:00 - 10:33 Meeting
-MARKDOWN
-      parser = MarkdownParser.new markdown
-
-      puts parser.calendar(0)
+puts e.save
+puts e.errors
