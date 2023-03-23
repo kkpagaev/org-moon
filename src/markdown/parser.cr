@@ -14,7 +14,7 @@ class MarkdownParser
     /# \s*(\S+(?:\s+\S+)*)/.match(@text.lines[0]).to_s
   end
 
-  def tags : Array(String)
-    @text.lines[1].scan(/#(\S+?(?=\s*#|\s*$))/).map { |tag| tag.to_s }
+  def tags(line_number = 1) : Array(String)
+    @text.lines[line_number].scan(/#(\S+?(?=\s*#|\s*$))/).map { |tag| tag.try &.[1].to_s }
   end
 end
