@@ -1,12 +1,12 @@
 class Markdown::List::Parser
-  property list : Array(NamedTuple(title: String, description: String))
+  property list : Array(Hash(Symbol, String))
   property md : String
   class SyntaxError < Exception
   end
 
   def initialize(@md : String)
     @index = 0
-    @list = [] of NamedTuple(title: String, description: String)
+    @list = [] of Hash(Symbol, String)
   end
 
   def parse
@@ -25,7 +25,10 @@ class Markdown::List::Parser
           builder << " " + lines[index].strip
         end
       end
-      @list << { title: title, description: description.strip }
+      @list << {
+        :title => title,
+        :description => description.strip
+      }
       index += 1
     end
     @list
