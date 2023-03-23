@@ -15,8 +15,9 @@ class Markdown::Calendar::Parser
     list_parser = Markdown::List::Parser.new(md)
     list = list_parser.parse
     list.each do |item|
-      puts item[:title]
-      match = item[:title].match(/(\s*(?<start>\d{1,2}:\d{2}))[ ]*-?\s*(?<finish>\d{1,2}:\d{2})?\s+(?<title>(.*)?)/)
+      title = item[:title]
+      next if title.nil?
+      match = title.match(/(\s*(?<start>\d{1,2}:\d{2}))[ ]*-?\s*(?<finish>\d{1,2}:\d{2})?\s+(?<title>(.*)?)/)
       if match.nil?
         raise SyntaxError.new("Invalid syntax for calendar item: #{item}")
       end
@@ -24,6 +25,7 @@ class Markdown::Calendar::Parser
         :from => match["start"],
         :to => match["finish"]?,
         :title => match["title"],
+        :description => item[:description]?,
       }
     end
     @list
