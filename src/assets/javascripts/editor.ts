@@ -22,7 +22,6 @@ const setSaved = (saved: boolean) => {
 setSaved(true)
 
 const save = () => {
-  const markdown = $("#markdown").val()
   setSaved(true)
 }
 

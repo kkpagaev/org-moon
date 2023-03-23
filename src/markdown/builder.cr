@@ -1,11 +1,10 @@
 class Markdown::Builder
   property name : String
-  property content : String 
+  property content : String
   property tags : Array(String)
 
   def initialize(@name, @tags, @content)
   end
-
 
   def get_tags_line
     tags.map do |tag|
@@ -13,8 +12,8 @@ class Markdown::Builder
     end
   end
 
-  def build() : String
-    <<-MARKDOWN 
+  def build : String
+    <<-MARKDOWN
       # #{name}
       #{get_tags_line} 
 

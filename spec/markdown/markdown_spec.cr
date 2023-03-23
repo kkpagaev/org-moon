@@ -1,16 +1,48 @@
-require "../spec_helper"
+require "spec"
 require "../../src/markdown/parser.cr"
 
 describe MarkdownParser do
-  describe "#parse" do
-    it "parses a simple markdown document" do
-      parser = MarkdownParser.new "# Hello World"
-      parser.parse().should not raise_error 
+  describe "#calendar" do
+    it "should parse a calendar" do
+      markdown = <<-MARKDOWN
+- 8:00 Breakfast
+- 9:00 Meeting
+MARKDOWN
+      parser = MarkdownParser.new markdown
+
+      parser.calendar(0).should eq [
+        CalendarEvent.new("8:00", "Breakfast"),
+        CalendarEvent.new("9:00", "Meeting")
+      ]
     end
 
-    it "parses a markdown document with multiple lines" do
-      parser = MarkdownParser.new "# Hello World"
-      parser.parse.should not raise_error 
+    it "with title" do
+      markdown = <<-MARKDOWN
+      - 8:00 Breakfast
+      - 9:00 - 10:10 Meeting
+      MARKDOWN
+
+      parser = MarkdownParser.new markdown
+
+      parser.calendar(0).should eq [
+        CalendarEvent.new("8:00", "Breakfast"),
+        CalendarTask.new("9:00", "10:10", "Meeting")
+      ]
+    end
+
+    it "with description" do
+      markdown = <<-MARKDOWN
+      - 8:00 Breakfast
+      - 9:00 - 10:10 Meeting  
+      test
+      MARKDOWN
+
+      parser = MarkdownParser.new markdown
+
+      parser.calendar(0).should eq [
+        CalendarEvent.new("8:00", "Breakfast"),
+        CalendarTask.new("9:00", "10:10", "Meeting", "test")
+      ]
     end
   end
 end

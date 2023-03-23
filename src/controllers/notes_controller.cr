@@ -23,12 +23,14 @@ class NoteController < ApplicationController
   end
 
   def whiteboard
-    @note = Note.first! "WHERE user_id = ?", [current_user.try &.id] 
+    @note = Note.first! "WHERE user_id = ?", [current_user.try &.id]
     render "edit.slang"
   end
 
   def build_markdown(name, tags, content)
-    "# #{name}  \n#{tags.split(",").map do |tag| '#' + tag end .join(" ")}  \n#{content}"
+    "# #{name}  \n#{tags.split(",").map do |tag|
+                      '#' + tag
+                    end.join(" ")}  \n#{content}"
   end
 
   def create
@@ -38,7 +40,7 @@ class NoteController < ApplicationController
     note.body = build_markdown(params[:title], params[:tags], params[:body])
 
     if note.save
-      tags = params[:tags].split(",")
+      tags = params[:tags].split(" ")
       save_tags note.id, tags
       redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been created."}
     else
@@ -70,7 +72,7 @@ class NoteController < ApplicationController
       required :book_id
       required :title
       required :body
-      optional :tags 
+      optional :tags
     end
   end
 

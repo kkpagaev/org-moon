@@ -75,6 +75,11 @@ a:hover {
   padding: 0.6em;
   display: flex;
   height: calc(100vh - 1.2em);
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $background-darker;
+  }
   .pane {
     position: relative;
     display: flex;
@@ -166,4 +171,26 @@ textarea {
     color: $white;
     font-weight: bold;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  overflow: hidden;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $background;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
