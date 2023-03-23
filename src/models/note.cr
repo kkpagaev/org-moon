@@ -12,4 +12,22 @@ class Note < Granite::Base
   column title : String?
   column body : String?
   timestamps
+
+  property tag_names : Array(String) = [] of String
+
+  after_save :save_tags
+
+  private def save_tags
+    return if tag_names.empty?
+    tags = [] of Tag
+    tag_names.each do |name|
+      tag = Tag.find_or_create_by name: name, user_id:  user.id
+      tags << tag
+    end
+    Tagging.where(note_id: id).delete
+    tags.each do |tag|
+      tagging = Tagging.new note_id: id, tag_id: tag.id
+      tagging.save
+    end
+  end
 end

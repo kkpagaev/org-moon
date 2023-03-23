@@ -38,10 +38,10 @@ class NoteController < ApplicationController
     note = Note.new notes_params.validate!
     note.user_id = current_user.try &.id
     note.body = build_markdown(params[:title], params[:tags], params[:body])
+    note.tag_names = params[:tags].split(",")
 
     if note.save
       tags = params[:tags].split(" ")
-      save_tags note.id, tags
       redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been created."}
     else
       flash[:danger] = "Could not create Note!"
@@ -53,7 +53,7 @@ class NoteController < ApplicationController
     note.set_attributes update_note_params.validate!
     parser = MarkdownParser.new note.body.not_nil!
     note.title = parser.title
-    save_tags note.id, parser.tags
+    note.tag_names = parser.tags
     if note.save
       redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been updated."}
     else
@@ -84,18 +84,5 @@ class NoteController < ApplicationController
 
   private def set_note
     @note = Note.find! params[:id]
-  end
-
-  private def save_tags(note_id, tag_names : Array(String))
-    tags = [] of Tag
-    tag_names.each do |name|
-      tag = Tag.find_or_create_by name: name, user_id: current_user.try &.id
-      tags << tag
-    end
-    Tagging.where(note_id: note_id).delete
-    tags.each do |tag|
-      tagging = Tagging.new note_id: note_id, tag_id: tag.id
-      tagging.save
-    end
   end
 end
