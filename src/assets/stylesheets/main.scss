@@ -87,7 +87,8 @@ a:hover {
     position: relative;
     display: flex;
     flex-basis: 100%;
-    margin: 0.6em;
+    margin-left: 0.6em;
+    margin-right: 0.6em;
     display: flex;
     height: 100%;
     border: 0;
@@ -201,6 +202,7 @@ textarea {
 .main {
   display: flex;
   flex-direction: row;
+  overflow: hidden;
   height: 100vh;
   &__sidebar {
     background-color: $background-lighter;
@@ -208,7 +210,13 @@ textarea {
     height: 100vh;
     overflow: auto;
     .sidebar {
+      display: flex;
+      overflow: hidden;
+      flex-direction: column;
       .sidebar__menu {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
         &__item--active {
           border-left: 2px solid $font;
           a {
@@ -236,7 +244,6 @@ textarea {
 
   &__content {
     flex: 1 1 auto;
-    overflow: auto;
     padding: 0.6em;
   }
 }

@@ -11,7 +11,8 @@ license: UNLICENSED
 targets:
   amber-moon:
     main: src/amber-moon.cr
-
+  parser:
+    main: src/markdown/calendar_parser.cr
   amber:
     main: lib/amber/src/amber/cli.cr
 

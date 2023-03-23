@@ -20,7 +20,7 @@ html
     .main
       .main__sidebar
         == render(partial: "layouts/_sidebar.slang")
-      .main__content
+      .container-fluid.main__content
         == content
 
     script src="/dist/main.bundle.js"
