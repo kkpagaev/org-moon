@@ -8,10 +8,10 @@ class MarkdownParser
     @text = text
   end
 
-  def title : String
+  def title : String | Nil
     raise InvalidMarkdown.new("Markdown must start with \"# \"") unless @text.starts_with?("# ")
 
-    /# \s*(\S+(?:\s+\S+)*)/.match(@text.lines[0]).to_s
+    /# \s*(\S+(?:\s+\S+)*)/.match(@text.lines[0]).try &.[1].to_s
   end
 
   def tags(line_number = 1) : Array(String)
