@@ -1,12 +1,10 @@
 class BookController < ApplicationController
-  getter book = Book.new
-
   before_action do
     only [:show, :edit, :update, :destroy] { set_book }
   end
 
   def index
-    books = Book.all
+    books = Book.where(user_id: current_user.try &.id)
     render "index.slang"
   end
 
@@ -25,6 +23,7 @@ class BookController < ApplicationController
   def create
     book = Book.new book_params.validate!
     book.user_id = current_user.not_nil!.id
+    book.icon = "gg-file"
     if book.save
       redirect_to action: :index, flash: {"success" => "Book has been created."}
     else

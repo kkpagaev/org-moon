@@ -4,12 +4,18 @@ class ApplicationController < Amber::Controller::Base
   include JasperHelpers
   LAYOUT = "application.slang"
 
+  getter book = Book.new
+
   def current_user
     context.current_user
   end
 
   def current_books
-    books = Book.all
+    if user = current_user
+      user.books.select { |book| !book.is_system }
+    else
+      [] of Book
+    end
   end
 
   def is_api_request?

@@ -6,8 +6,8 @@ class CalendarController < ApplicationController
   end
 
   def index
-    notes = Note.all
-    render "notes/index.slang"
+# notes = Note.all
+    render "index.slang"
   end
 
   def edit

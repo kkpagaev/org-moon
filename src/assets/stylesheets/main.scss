@@ -219,7 +219,7 @@ textarea {
           position: relative;
           &:hover {
             .sidebar__menu__item__tooltip {
-              transition-delay: 0.5s;
+              transition-delay: 0.2s;
               visibility: visible !important;
             }
           }
@@ -266,5 +266,19 @@ textarea {
   &__content {
     flex: 1 1 auto;
     padding: 0.6em;
+  }
+}
+
+.calendar {
+  padding: 0.6em;
+  &__month {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: $background-darker;
+    background-color: $font;
+    .calendar__week {
+      display: flex;
+    }
   }
 }

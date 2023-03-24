@@ -6,8 +6,28 @@ class NoteController < ApplicationController
   end
 
   def index
-    notes = Note.all
+    book = Book.find params[:book_id]?
+    page = params[:page]?|| 1
+    if book
+      notes = Note.paginate book_id: book.id, page: page.to_i
+    else
+      notes = Note.all
+    end
     render "index.slang"
+  end
+
+  # infinite scroll json api
+  def scroll
+    book = Book.find params[:book_id]?
+    page = params[:page]?|| 1
+    if book
+      notes = Note.paginate book_id: book.id, page: page.to_i
+    else
+      notes = Note.all
+    end
+    respond_with do
+      json notes.to_json
+    end
   end
 
   def show
@@ -33,12 +53,14 @@ class NoteController < ApplicationController
                     end.join(" ")}  \n#{content}"
   end
 
+  getter books = [] of Book
   def create
     # return {foo: "bar"}.to_json if is_api_request?
     note = Note.new notes_params.validate!
     note.user_id = current_user.try &.id
     note.body = build_markdown(params[:title], params[:tags], params[:body])
     note.tag_names = params[:tags].split(",")
+    books = Book.where(user_id: current_user.try &.id)
 
     if note.save
       tags = params[:tags].split(" ")

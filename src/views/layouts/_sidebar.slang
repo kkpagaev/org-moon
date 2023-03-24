@@ -18,14 +18,14 @@
 
 
     - current_books.each do |b|
-      - active = context.request.path == "/notes" ? "sidebar__menu__item--active" : ""
+      - active = book.try &.id == b.id ? "sidebar__menu__item--active" : ""
       li.sidebar__menu__item class=active
         span.sidebar__menu__item__tooltip
           | #{b.title}
         - icon = b.icon
-        a(href="/books/#{b.id}" class=icon)
+        a(href="/notes?book_id=#{b.id}&page=1" class=icon)
   ul.sidebar__menu
-    - active = context.request.path == "/profile" ? "sidebar__menu__item--active" : ""
+    - active = context.request.path.includes? "profile" ? "sidebar__menu__item--active" : ""
     li.sidebar__menu__item class=active
       span.sidebar__menu__item__tooltip
         | Add a book

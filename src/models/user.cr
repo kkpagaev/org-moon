@@ -5,6 +5,9 @@ class User < Granite::Base
   connection pg
   table users
 
+  has_many books : Book, foreign_key: :user_id
+  has_many notes : Note, foreign_key: :user_id
+
   column id : Int64, primary: true
   column email : String?
   column hashed_password : String?
@@ -22,6 +25,8 @@ class User < Granite::Base
   validate :password, "is too short", ->(user : User) do
     user.password_changed? ? user.valid_password_size? : true
   end
+
+  after_save :create_default_books
 
   def password=(password)
     @new_password = password
@@ -45,4 +50,16 @@ class User < Granite::Base
   end
 
   private getter new_password : String?
+
+  private def create_default_books
+    default = Book.find_or_create_by title: "Default", user_id: id, icon: "gg-calendar-two", is_system: false
+    if default.errors.any?
+      raise "Could not create default book: #{default.errors}"
+      return
+    end
+    note = Note.new body: "# Whiteboard  \n\n", title: "Whiteboard", user_id: id, book_id: default.id
+    note.save
+    Book.find_or_create_by title: "Diary", user_id: id, icon: "gg-album", is_system: true
+    Book.find_or_create_by title: "Calendar", user_id: id, icon: "gg-calendar-today", is_system: true
+  end
 end

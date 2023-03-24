@@ -30,4 +30,17 @@ class Note < Granite::Base
       tagging.save
     end
   end
+
+  def self.paginate(page : Int32, book_id : Int64 | Nil = nil)
+    if book_id.nil?
+      Note.offset((page - 1) * 1)
+                  .limit(1)
+                  .select
+    else
+      Note.where(book_id: book_id)
+                  .offset((page - 1) * 1)
+                  .limit(1)
+                  .select
+    end
+  end
 end
