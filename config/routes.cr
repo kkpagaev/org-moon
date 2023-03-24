@@ -50,8 +50,8 @@ Amber::Server.configure do
     resources "notes", NoteController, except: [:whiteboard]
 
     get "/calendar", CalendarController, :index
-    get "/calendar/:id/edit", CalendarController, :edit
-    patch "/calendar/:id/update", CalendarController, :update
+    get "/calendar/:date", CalendarController, :editor
+    patch "/calendar/:date", CalendarController, :save
 
     get "/", NoteController, :whiteboard
   end

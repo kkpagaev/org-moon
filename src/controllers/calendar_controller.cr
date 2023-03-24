@@ -10,11 +10,13 @@ class CalendarController < ApplicationController
     render "index.slang"
   end
 
-  def edit
+  def editor
+    date = params[:date]
+
     render "edit.slang"
   end
 
-  def update
+  def save
     render "edit.slang"
   end
 
