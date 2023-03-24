@@ -12,8 +12,6 @@
     == text_area(name: "title", content: note.title, placeholder: "Title", class: "form-control")
   .form-group
     == text_area(name: "tags", content: "" , placeholder: "Tags", class: "form-control")
-  .form-group
-    == text_area(name: "body", content: note.body, placeholder: "Body", class: "form-control", size: "30x10")
   == submit("Submit", class: "btn btn-success btn-sm")
   == link_to("Back", "/notes", class: "btn btn-light btn-sm")
 
