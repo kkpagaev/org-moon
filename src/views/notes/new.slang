@@ -7,7 +7,7 @@
   == csrf_tag
   .form-group
     == label(:book)
-    == select_field(name: "book_id", collection: Book.where(user_id: current_user.try &.id, is_system: false).map{|book| [book.id, book.title]}, selected: 2, class: "form-control")
+    == select_field(name: "book_id", collection: Book.where(user_id: current_user.try &.id, is_system: false).map{|book| [book.id, book.title]}, selected: params[:book_id]?, class: "form-control")
   .form-group
     == text_area(name: "title", content: note.title, placeholder: "Title", class: "form-control")
   .form-group
