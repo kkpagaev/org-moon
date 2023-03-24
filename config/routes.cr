@@ -51,7 +51,7 @@ Amber::Server.configure do
 
     get "/calendar", CalendarController, :index
     get "/calendar/:date", CalendarController, :editor
-    patch "/calendar/:date", CalendarController, :save
+    post "/calendar/:date", CalendarController, :save
 
     get "/", NoteController, :whiteboard
   end

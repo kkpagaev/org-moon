@@ -6,15 +6,17 @@ class Event < Granite::Base
 
   column id : Int64, primary: true
   column title : String
-  column description : String
+  column description : String = ""
   column start_at : Time
   column end_at : Time?
 
   timestamps
 
-  def initialize(title : String, description : String, date : String, start : String, finish : String? = nil)
+  def initialize(title : String, description : String | Nil, date : String, start : String, finish : String? = nil)
     @title = title
-    @description = description
+    if d = description
+      @description = d
+    end
     start_at = Time.parse( date + " " + start, "%d.%m.%Y %H:%M", Time::Location::UTC)
     end_at = Time.parse( date + " " + finish, "%d.%m.%Y %H:%M",Time::Location::UTC) unless finish.nil?
     @start_at = start_at

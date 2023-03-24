@@ -17,4 +17,18 @@ class MarkdownParser
   def tags(line_number = 1) : Array(String)
     @text.lines[line_number].scan(/#(\S+?(?=\s*#|\s*$))/).map { |tag| tag.try &.[1].to_s }
   end
+
+  def calendar(date : String) : Array(Event)
+    parser = Markdown::Calendar::Parser.new(@text)
+    list = parser.calendar_list
+    list.map do |item|
+      Event.new(
+        title: item[:title],
+        description: item[:description]?,
+        date: date,
+        start: item[:from],
+        finish: item[:to]?,
+      )
+    end
+  end
 end
