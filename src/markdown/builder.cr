@@ -3,6 +3,10 @@ require "./types"
 module Markdown::Builder
   abstract class Base
     abstract def build : String
+
+    def to_s : String
+      build
+    end
   end
 
   class Page < Base
@@ -18,13 +22,9 @@ module Markdown::Builder
         if name = @name
           io << "# #{name}  \n"
         end
-        io << TagLine.new(tags).build << "\n" unless tags.empty?
+        io << TagLine.new(tags).to_s << "\n" unless tags.empty?
         if c = @content
-          if c.is_a? Base
-            io << c.as(Base).build
-          else
-            io << c << "  \n"
-          end
+          io << c.to_s
         end
       end
     end
