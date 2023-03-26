@@ -12,6 +12,10 @@ module Markdown::Page
 
     def initialize(@title, @tags, @events)
     end
+
+    def to_s
+      Markdown::Builder::Page.new(title, tags, Markdown::Builder::EventList.new(events)).to_s
+    end
   end
 end
 

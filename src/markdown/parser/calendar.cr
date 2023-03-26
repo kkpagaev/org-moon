@@ -15,7 +15,7 @@ class Markdown::Parser::Calendar < Markdown::Parser::Page
       next if title.nil?
       match = title.match(/(\s*(?<start>\d{1,2}:\d{2}))[ ]*-?\s*(?<finish>\d{1,2}:\d{2})?\s+(?<title>(.*)?)/)
       if match.nil?
-        raise SyntaxError.new("Invalid syntax for calendar item: #{item}")
+        raise SyntaxError.new("Syntax Error near \"- #{title}\"")
       end
 
       start_at = Time.parse( date + " " + match["start"], "%d.%m.%Y %H:%M", Time::Location::UTC)
