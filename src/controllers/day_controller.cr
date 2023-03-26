@@ -42,7 +42,7 @@ class DayController < ApplicationController
       Event.where(day_id: @day.id, user_id: user_id).delete
       Event.import events
     end
-    redirect_to "/day/#{params[:date]}"
+    redirect_to "/calendar/#{params[:date]}"
   end
 
   private def save_day_params
