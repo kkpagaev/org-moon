@@ -1,12 +1,11 @@
-class Markdown::List::Parser
-  property list : Array(Hash(Symbol, String | Nil))
+class Markdown::Parser::List
+  property list : Array(Markdown::List::Item) = [] of Markdown::List::Item
   property md : String
   class SyntaxError < Exception
   end
 
   def initialize(@md : String)
     @index = 0
-    @list = [] of Hash(Symbol, String | Nil)
     @lines = @md.lines
   end
 
@@ -19,10 +18,7 @@ class Markdown::List::Parser
       end
       title = @lines[@index][2..-1].strip
       description = parse_description
-      @list << {
-        :title => title,
-        :description => description
-      }
+      @list << Markdown::List::Item.new(title, description) if title
       @index += 1
     end
     @list

@@ -1,7 +1,7 @@
 -- +micrate Up
 CREATE TABLE days (
   id BIGSERIAL PRIMARY KEY,
-  date VARCHAR,
+  date VARCHAR NOT NULL,
   note_id BIGINT,
   user_id BIGINT,
   created_at TIMESTAMP,

@@ -38,7 +38,6 @@ Amber::Server.configure do
     post "/session", SessionController, :create
     get "/signup", UserController, :new
     post "/registration", UserController, :create
-
   end
 
   routes :auth do
@@ -50,8 +49,8 @@ Amber::Server.configure do
     resources "notes", NoteController, except: [:whiteboard]
 
     get "/calendar", CalendarController, :index
-    get "/calendar/:date", CalendarController, :editor
-    post "/calendar/:date", CalendarController, :save
+    get "/day/:date", DayController, :editor
+    post "/day/:date", DayController, :save
 
     get "/", NoteController, :whiteboard
   end
