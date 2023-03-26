@@ -10,7 +10,7 @@
       span.sidebar__menu__item__tooltip
         | Yout books
       a.gg-album(href="/books")
-    - active = context.request.path == "/calendar" ? "sidebar__menu__item--active" : ""
+    - active = (context.request.path.includes?("calendar")) ? "sidebar__menu__item--active" : ""
     li.sidebar__menu__item class=active
       span.sidebar__menu__item__tooltip
         | Calendar
