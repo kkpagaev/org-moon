@@ -12,9 +12,9 @@ html
 
   body
     ninja-keys
-    .container
+    .alert-popup
       - flash.each do |key, value|
-        div class="alert alert-#{key}" role="alert"
+        div id="hideMe" class="alert alert-#{key}" role="alert"
           = flash[key]
 
     .main

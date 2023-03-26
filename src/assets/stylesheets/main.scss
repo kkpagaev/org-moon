@@ -282,3 +282,80 @@ textarea {
     }
   }
 }
+
+.alert-popup {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  .alert {
+    position: relative;
+    z-index: 10000;
+  }
+}
+#hideMe {
+  -webkit-animation: cssAnimation 5s forwards;
+  animation: cssAnimation 5s forwards;
+}
+@keyframes cssAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes cssAnimation {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.calendar-wrapper {
+  font: 100% system-ui;
+}
+
+.calendar-header {
+  color: $background-lighter;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.calendar,
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar {
+  height: calc(100vh - 5.3em);
+}
+
+ol.calendar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+
+  li {
+    padding: 4px;
+    border: 1px solid #eee;
+  }
+}
+
+.first-day {
+  grid-column-start: 3;
+}
+
+.day-name {
+  background: #eee;
+}
