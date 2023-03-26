@@ -48,9 +48,8 @@ class NoteController < ApplicationController
   end
 
   def build_markdown(name, tags, content)
-    "# #{name}  \n#{tags.split(",").map do |tag|
-                    "##{tag}" unless tag.empty?
-                    end.join(" ")}  \n#{content}"
+    tag_names = tags.gsub(/\s+/, "").split(",")
+    Markdown::Builder::Page.new(name, tag_names, content).to_s
   end
 
   getter books = [] of Book
