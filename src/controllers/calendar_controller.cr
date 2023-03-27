@@ -20,10 +20,9 @@ struct Time
   end
 
   def month_name
-    [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ][month - 1]
+    ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][month - 1]
   end
 end
-
 
 class CalendarController < ApplicationController
   getter month = Time.utc.at_beginning_of_month
