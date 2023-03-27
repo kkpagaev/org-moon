@@ -6,25 +6,14 @@
   a href="/calendar/#{@month.next_month.month}.#{@month.next_month.year}"
     | Next >
   ol.calendar
+    - today = Time.utc
     - @month.calendar_offset.times  do
       li
     - @month.days_in_month.times do |i|
+      - active = (i+1) == today.day && @month.month == today.month && @month.year == today.year ? "active" : ""
       li
-        .calendar--number
-          | #{i + 1}
         a href="/day/#{i + 1}.12.2022"
-          .calendar--content
-            | - 8:30 drink milk
-            br
-            | foo bar test ls fui
-            br
-            | - 9:00 - 10:00 eat breakfast
-            br
-            | foo bar test ls fui
-            br
-            | - 10:00 - 11:00 eat breakfast
-            br
-            | foo bar test ls fui
-            br
-            | - 11:00 - 12:00 eat breakfast
-            br
+          .calendar--day class=active
+            .calendar--number
+              | #{i + 1}
+            .calendar--content
