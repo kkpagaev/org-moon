@@ -198,16 +198,20 @@ textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
 .main {
   display: flex;
   flex-direction: row;
-  overflow: hidden;
-  height: 100vh;
+  min-height: 100%;
   &__sidebar {
     background-color: $background-lighter;
     color: #dcd7ba;
-    height: 100vh;
+    min-height: 100vh;
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -265,7 +269,7 @@ textarea {
 
   &__content {
     flex: 1 1 auto;
-    padding: 0.6em;
+    padding-top: 0.7em;
   }
 }
 
@@ -336,19 +340,37 @@ textarea {
   grid-template-columns: repeat(7, 1fr);
 }
 
-.calendar {
-  height: calc(100vh - 5.3em);
-}
-
 ol.calendar {
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: right;
+  text-align: left;
 
   li {
-    padding: 4px;
-    border: 1px solid #eee;
+    a {
+      text-decoration: none;
+      color: $green !important;
+    }
+    padding: 8px;
+    border: 1px solid $background-lighter;
+    position: relative;
+    display: flex;
+    .calendar--number {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0.5em;
+    }
+    .calendar--content {
+      align-self: flex-end;
+    }
+  }
+
+  li:hover {
+    border-color: #eee;
+    a {
+      color: $font !important;
+    }
   }
 }
 

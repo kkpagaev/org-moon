@@ -49,8 +49,8 @@ Amber::Server.configure do
     resources "notes", NoteController, except: [:whiteboard]
 
     get "/calendar", CalendarController, :index
-    get "/calendar/:date", DayController, :editor
-    post "/calendar/:date", DayController, :save
+    get "/day/:date", DayController, :editor
+    post "/day/:date", DayController, :save
 
     get "/", NoteController, :whiteboard
   end

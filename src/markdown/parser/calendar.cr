@@ -15,20 +15,23 @@ class Markdown::Parser::Calendar < Markdown::Parser::Page
       next if title.nil?
       match = title.match(/(\s*(?<start>\d{1,2}:\d{2}))[ ]*-?\s*(?<finish>\d{1,2}:\d{2})?\s+(?<title>(.*)?)/)
       if match.nil?
-        raise SyntaxError.new("Syntax Error near \"- #{title}\"")
+        next
       end
+      begin
+        start_at = Time.parse( date + " " + match["start"], "%d.%m.%Y %H:%M", Time::Location::UTC)
+        if finish = match["finish"]?
+          end_at = Time.parse( date + " " + finish, "%d.%m.%Y %H:%M",Time::Location::UTC)
+        end
 
-      start_at = Time.parse( date + " " + match["start"], "%d.%m.%Y %H:%M", Time::Location::UTC)
-      if finish = match["finish"]?
-        end_at = Time.parse( date + " " + finish, "%d.%m.%Y %H:%M",Time::Location::UTC)
+        @list << Markdown::Event.new(
+          start_at: start_at,
+          end_at: end_at,
+          title: match["title"],
+          description: item.description,
+        )
+      rescue
+        next
       end
-
-      @list << Markdown::Event.new(
-        start_at: start_at,
-        end_at: end_at,
-        title: match["title"],
-        description: item.description,
-      )
     end
     @list
   end

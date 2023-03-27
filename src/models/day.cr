@@ -19,7 +19,13 @@ class Day < Granite::Base
     ])
     builder = Markdown::Builder::Page.new(date, ["foo", "bar"], list_builder)
 
-    Note.new title: date, body: builder.to_s
+    # TODO: use a relation
+    book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true
+
+    note = Note.new title: date, body: builder.to_s, user_id: user_id
+    note.book = book
+
+    note
   end
 
   private def parse_md(body : String)
@@ -42,6 +48,8 @@ class Day < Granite::Base
       note.body = page.to_s
       note.user_id = user_id
 
+      book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true
+      note.book = book
       if note.title != date
         raise "Title and date must match"
       end

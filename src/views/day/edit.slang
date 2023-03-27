@@ -3,7 +3,7 @@
     - note.errors.each do |error|
       li = error.to_s
 
-== form(action: "/calendar/#{params[:date]}") do
+== form(action: "/day/#{params[:date]}") do
   == csrf_tag
   .editor
     .pane

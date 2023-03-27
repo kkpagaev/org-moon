@@ -12,6 +12,7 @@ class DayController < ApplicationController
     else
       raise "No date provided"
     end
+    @book = @day.note.book
   end
 
   def editor
@@ -25,7 +26,7 @@ class DayController < ApplicationController
       day.page = params[:body]
       day.save!
     end
-    redirect_to "/calendar/#{params[:date]}"
+    redirect_to "/day/#{params[:date]}"
   end
 
   private def save_day_params
