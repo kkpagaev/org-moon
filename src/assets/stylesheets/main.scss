@@ -355,6 +355,12 @@ body {
       text-decoration: none;
       color: $font-dimmed !important;
     }
+    .calendar--number {
+      color: $red;
+    }
+    .calendar--day {
+      background: $background-darker;
+    }
   }
   &--day {
     margin: 1px;

@@ -12,7 +12,7 @@
     - @month.days_in_month.times do |i|
       - active = (i+1) == today.day && @month.month == today.month && @month.year == today.year ? "active" : ""
       li
-        a href="/day/#{i + 1}.12.2022"
+        a href="/day/#{i + 1}.#{@month.month}.#{@month.year}"
           .calendar--day class=active
             .calendar--number
               | #{i + 1}
