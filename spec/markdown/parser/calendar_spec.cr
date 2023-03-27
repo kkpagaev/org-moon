@@ -11,7 +11,7 @@ describe Markdown::Parser::Calendar do
         end_at: nil,
         title: "Breakfast",
         description: nil,
-      )
+      ),
     ]
     parser.calendar_list("1.1.2015").should eq res
   end
@@ -25,7 +25,7 @@ describe Markdown::Parser::Calendar do
         end_at: Time.utc(2015, 1, 1, 9, 30),
         title: "Breakfast",
         description: nil,
-      )
+      ),
     ]
     parser.calendar_list("1.1.2015").should eq res
   end

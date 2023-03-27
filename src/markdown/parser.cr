@@ -22,7 +22,6 @@ class MarkdownParser
     @text.lines[line_number].scan(/#(\S+?(?=\s*#|\s*$))/).map { |tag| tag.try &.[1].to_s }
   end
 
-
   def parse_day(date : String) : Markdown::Page::Day
     ptitle = title
     ptags = tags

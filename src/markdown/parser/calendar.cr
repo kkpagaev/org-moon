@@ -6,7 +6,6 @@ class Markdown::Parser::Calendar < Markdown::Parser::Page
   class SyntaxError < Exception
   end
 
-
   def calendar_list(date : String) : Array(Markdown::Event)
     list_parser = Markdown::Parser::List.new(md)
     list = list_parser.parse
@@ -18,9 +17,9 @@ class Markdown::Parser::Calendar < Markdown::Parser::Page
         next
       end
       begin
-        start_at = Time.parse( date + " " + match["start"], "%d.%m.%Y %H:%M", Time::Location::UTC)
+        start_at = Time.parse(date + " " + match["start"], "%d.%m.%Y %H:%M", Time::Location::UTC)
         if finish = match["finish"]?
-          end_at = Time.parse( date + " " + finish, "%d.%m.%Y %H:%M",Time::Location::UTC)
+          end_at = Time.parse(date + " " + finish, "%d.%m.%Y %H:%M", Time::Location::UTC)
         end
 
         @list << Markdown::Event.new(
@@ -36,4 +35,3 @@ class Markdown::Parser::Calendar < Markdown::Parser::Page
     @list
   end
 end
-

@@ -28,7 +28,6 @@ module Markdown
     property end_at : Time?
 
     def initialize(@title, @description, @start_at, @end_at)
-
     end
   end
 

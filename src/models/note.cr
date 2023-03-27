@@ -21,7 +21,7 @@ class Note < Granite::Base
     return if tag_names.nil?
     tags = [] of Tag
     tag_names.try &.each do |name|
-      tag = Tag.find_or_create_by name: name, user_id:  user.id
+      tag = Tag.find_or_create_by name: name, user_id: user.id
       tags << tag
     end
     Tagging.where(note_id: id).delete
@@ -34,13 +34,13 @@ class Note < Granite::Base
   def self.paginate(page : Int32, book_id : Int64 | Nil = nil)
     if book_id.nil?
       Note.offset((page - 1) * 1)
-                  .limit(1)
-                  .select
+        .limit(1)
+        .select
     else
       Note.where(book_id: book_id)
-                  .offset((page - 1) * 1)
-                  .limit(1)
-                  .select
+        .offset((page - 1) * 1)
+        .limit(1)
+        .select
     end
   end
 end

@@ -32,6 +32,7 @@ module Markdown::Builder
 
   class TagLine < Base
     property tags : Array(String)
+
     def initialize(@tags = [] of String)
     end
 
@@ -47,6 +48,7 @@ module Markdown::Builder
 
   class EventList < Base
     property events : Array(Markdown::Event)
+
     def initialize(@events = [] of Event)
     end
 
@@ -59,7 +61,7 @@ module Markdown::Builder
           end
           if end_at = e.end_at
             io << " - "
-            io <<  end_at.to_s "%H:%M"
+            io << end_at.to_s "%H:%M"
           end
           if title = e.title
             io << " " << title + "  \n"

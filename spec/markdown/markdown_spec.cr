@@ -36,7 +36,7 @@ describe MarkdownParser do
 
   describe "#calendar" do
     it "should parse calendar" do
-      text = <<-MARKDOWN 
+      text = <<-MARKDOWN
       # 22.12.2022  
       #Monday  
 
@@ -46,13 +46,13 @@ describe MarkdownParser do
       MARKDOWN
 
       parser = MarkdownParser.new text
-      events =[
+      events = [
         Markdown::Event.new(
           title: "Breakfast",
           description: "description foo",
           start_at: Time.utc(2022, 12, 22, 8, 30),
           end_at: Time.utc(2022, 12, 22, 9, 30),
-        )
+        ),
       ]
       title = "22.12.2022"
       tags = ["Monday"]

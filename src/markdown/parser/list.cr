@@ -1,6 +1,7 @@
 class Markdown::Parser::List
   property list : Array(Markdown::List::Item) = [] of Markdown::List::Item
   property md : String
+
   class SyntaxError < Exception
   end
 

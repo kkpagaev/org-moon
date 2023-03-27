@@ -7,7 +7,7 @@ class NoteController < ApplicationController
 
   def index
     book = Book.find params[:book_id]?
-    page = params[:page]?|| 1
+    page = params[:page]? || 1
     if book
       notes = Note.paginate book_id: book.id, page: page.to_i
     else
@@ -19,7 +19,7 @@ class NoteController < ApplicationController
   # infinite scroll json api
   def scroll
     book = Book.find params[:book_id]?
-    page = params[:page]?|| 1
+    page = params[:page]? || 1
     if book
       notes = Note.paginate book_id: book.id, page: page.to_i
     else
@@ -53,6 +53,7 @@ class NoteController < ApplicationController
   end
 
   getter books = [] of Book
+
   def create
     note = Note.new notes_params.validate!
     note.user_id = current_user.try &.id

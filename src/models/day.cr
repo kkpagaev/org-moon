@@ -13,9 +13,9 @@ class Day < Granite::Base
   property page : Markdown::Page::Day | Nil = nil
 
   def default_note : Note | ::Nil
-    list_builder  = Markdown::Builder::EventList.new([
+    list_builder = Markdown::Builder::EventList.new([
       Markdown::Event.new(title: "foo", description: "description", start_at: Time.utc(2015, 1, 1, 8, 30), end_at: Time.utc(2015, 1, 1, 9, 30)),
-      Markdown::Event.new(title: "test", description: nil, start_at: Time.utc(2015, 1, 1, 10, 30), end_at: nil)
+      Markdown::Event.new(title: "test", description: nil, start_at: Time.utc(2015, 1, 1, 10, 30), end_at: nil),
     ])
     builder = Markdown::Builder::Page.new(date, ["foo", "bar"], list_builder)
 

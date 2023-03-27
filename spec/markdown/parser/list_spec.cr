@@ -8,7 +8,7 @@ describe Markdown::Parser::List do
     parser.parse.should eq [
       Markdown::List::Item.new("one", nil),
       Markdown::List::Item.new("two", nil),
-      Markdown::List::Item.new("three", nil)
+      Markdown::List::Item.new("three", nil),
     ]
   end
 
@@ -17,7 +17,7 @@ describe Markdown::Parser::List do
     parser = Markdown::Parser::List.new(markdown)
     res = [
       Markdown::List::Item.new("one", "foo bar test lol"),
-      Markdown::List::Item.new("two", nil)
+      Markdown::List::Item.new("two", nil),
     ]
     parser.parse.should eq res
   end
@@ -28,7 +28,7 @@ describe Markdown::Parser::List do
     res = [
       Markdown::List::Item.new("one", "foo bar test lol"),
       Markdown::List::Item.new("two", nil),
-      Markdown::List::Item.new("three", "foo bar")
+      Markdown::List::Item.new("three", "foo bar"),
     ]
     parser.parse.should eq res
   end
