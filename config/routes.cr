@@ -48,6 +48,7 @@ Amber::Server.configure do
     resources "books", BookController
     resources "notes", NoteController, except: [:whiteboard]
 
+    get "/calendar/:month", CalendarController, :index
     get "/calendar", CalendarController, :index
     get "/day/:date", DayController, :editor
     post "/day/:date", DayController, :save

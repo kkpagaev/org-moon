@@ -1,14 +1,18 @@
 .calendar-wrapper
   h1
-    | December 2022
+    | #{@month.month_name} #{@month.year}
+  a href="/calendar/#{@month.prev_month.month}.#{@month.prev_month.year}"
+    | < Prev
+  a href="/calendar/#{@month.next_month.month}.#{@month.next_month.year}"
+    | Next >
   ol.calendar
-    li.first-day
-      | 1
-    - 30.times do |i|
+    - @month.calendar_offset.times  do
+      li
+    - @month.days_in_month.times do |i|
       li
         .calendar--number
-          | #{i + 2}
-        a href="/day/#{i + 2}.12.2022"
+          | #{i + 1}
+        a href="/day/#{i + 1}.12.2022"
           .calendar--content
             | - 8:30 drink milk
             br
