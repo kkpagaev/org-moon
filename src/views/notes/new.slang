@@ -1,4 +1,4 @@
-h1 New Book
+h1 New Note
 
 - if note.errors
   ul.errors
