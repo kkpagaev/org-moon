@@ -104,5 +104,6 @@ class NoteController < ApplicationController
 
   private def set_note
     @note = Note.find! params[:id]
+    @book = @note.book
   end
 end

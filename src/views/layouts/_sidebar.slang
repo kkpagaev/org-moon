@@ -10,7 +10,7 @@
       span.sidebar__menu__item__tooltip
         | Yout books
       a.gg-album(href="/books")
-    - active = (context.request.path.includes?("calendar")) ? "sidebar__menu__item--active" : ""
+    - active = (context.request.path.includes?("calendar")) || (context.request.path.includes?("day")) ? "sidebar__menu__item--active" : ""
     li.sidebar__menu__item class=active
       span.sidebar__menu__item__tooltip
         | Calendar
@@ -28,7 +28,7 @@
     - active = (context.request.path.includes? "/notes/new") ? "sidebar__menu__item--active" : ""
     li.sidebar__menu__item class=active
       span.sidebar__menu__item__tooltip
-        | Add a book
+        | Add new note
       a.gg-add(href="/notes/new")
     - active = (context.request.path.includes?("profile")) ? "sidebar__menu__item--active" : ""
     li.sidebar__menu__item class=active

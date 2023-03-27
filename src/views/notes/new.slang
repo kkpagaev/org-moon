@@ -1,3 +1,5 @@
+h1 New Book
+
 - if note.errors
   ul.errors
     - note.errors.each do |error|
