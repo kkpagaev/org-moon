@@ -88,6 +88,10 @@ shards:
     git: https://github.com/amberframework/micrate.git
     version: 0.12.0
 
+  moon-markdown:
+    git: https://github.com/kappagaev/moon-markdown.git
+    version: 0.2.0+git.commit.da38446fc50bdd05920df3771e7c9ec4e0c5d596
+
   mysql:
     git: https://github.com/crystal-lang/crystal-mysql.git
     version: 0.13.0

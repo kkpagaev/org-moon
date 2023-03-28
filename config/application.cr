@@ -7,6 +7,7 @@
 # > We recommend not modifying the order of the requires since the order will
 # affect the behavior of the application.
 
+
 require "amber"
 require "./settings"
 require "./logger"
@@ -20,7 +21,6 @@ require "./initializers/**"
 # Start Generator Dependencies: Don't modify.
 require "../src/models/**"
 require "../src/pipes/**"
-require "../src/markdown/**"
 # End Generator Dependencies
 
 require "../src/controllers/application_controller"
