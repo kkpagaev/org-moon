@@ -369,6 +369,7 @@ body {
   &--day {
     margin: 1px;
     min-height: 100px;
+    height: 100%;
     color: #54546d;
     a {
       text-decoration: none;
@@ -388,14 +389,12 @@ body {
       align-self: flex-end;
     }
     &.active {
-      border-color: #98bb6c;
-      a {
-        color: $font !important;
-      }
+      border-color: #2d4f67;
+      color: $font !important;
     }
     &:hover {
       transition: border-color 0.2s ease-in-out;
-      border-color: #2d4f67;
+      border-color: #98bb6c;
       & .calendar--content {
         transition: color 0.2s ease-in-out;
         color: $font !important;
