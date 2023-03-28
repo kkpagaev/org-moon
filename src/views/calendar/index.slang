@@ -17,3 +17,8 @@
             .calendar--number
               | #{i + 1}
             .calendar--content
+              - day = days.find {|d| d.date[0..1].to_i == i + 1}
+              - if day
+                  - day.events.each do |event|
+                      | #{event.to_s}
+                    br

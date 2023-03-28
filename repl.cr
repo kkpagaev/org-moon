@@ -1,9 +1,10 @@
 require "./config/application"
 
-date = "22.02.2022"
-start = "8:30"
-
-e = Event.new(title: "Test Event", description: "This is a test event", start: start)
-
-puts e.save
-puts e.errors
+month = Time.utc
+# events = Event.all("JOIN days d ON d.id = events.day_id
+# WHERE d.date ~ '^[0-9]{2}.#{month.month}.#{month.year}'
+# GROUP BY d.date
+# ")
+days = Day.all("JOIN events e ON e.day_id = day.id
+               WHERE date ~ '^[0-9]{2}.#{month.month}.#{month.year}'")
+debugger

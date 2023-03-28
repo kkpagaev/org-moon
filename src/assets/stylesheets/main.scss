@@ -346,6 +346,10 @@ body {
   padding: 0;
   text-align: left;
 
+  & li a {
+    text-decoration: none;
+  }
+
   li:nth-child(7n - 1),
   li:nth-child(7n) {
     color: $red;
@@ -392,7 +396,7 @@ body {
     &:hover {
       transition: border-color 0.2s ease-in-out;
       border-color: #2d4f67;
-      a {
+      & .calendar--content {
         transition: color 0.2s ease-in-out;
         color: $font !important;
       }

@@ -5,12 +5,13 @@ class Day < Granite::Base
   # K to see macro result
   belongs_to :user
   belongs_to :note
+  has_many events : Event
 
   column id : Int64, primary: true
   column date : String
   timestamps
 
-  property page : Markdown::Page::Day | Nil = nil
+  getter page : Markdown::Page::Day | Nil = nil
 
   def default_note : Note | ::Nil
     list_builder = Markdown::Builder::EventList.new([
@@ -74,4 +75,5 @@ class Day < Granite::Base
       Event.import events
     end
   end
+
 end

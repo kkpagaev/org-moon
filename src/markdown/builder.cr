@@ -28,6 +28,14 @@ module Markdown::Builder
         end
       end
     end
+
+    def to_json : String
+      {
+        name: name,
+        tags: tags,
+        content: content,
+      }.to_json
+    end
   end
 
   class TagLine < Base

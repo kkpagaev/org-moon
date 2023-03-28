@@ -21,4 +21,12 @@ class Event < Granite::Base
       true
     end
   end
+
+  def to_s
+    if finish = end_at
+      "#{start_at.to_s("%H:%M")} - #{finish.to_s("%H:%M")} #{title}"
+    else
+      "#{start_at.to_s("%H:%M")} #{title}"
+    end
+  end
 end
