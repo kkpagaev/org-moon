@@ -31,6 +31,12 @@ if (preview) {
   preview.innerHTML = parse(markdown.value)
 }
 
+$(".preview-note").each((_index, element) => {
+  const markdown = $(element).find(".preview-note__body")
+  const preview = $(element).find(".preview-note__preview")
+  preview.html(parse(markdown.text().trim()))
+})
+
 const markdown = document.getElementById("markdown")
 if (markdown) {
   markdown.addEventListener("keyup", (event) => {

@@ -9,9 +9,9 @@ class NoteController < ApplicationController
     book = Book.find params[:book_id]?
     page = params[:page]? || 1
     if book
-      notes = Note.paginate book_id: book.id, page: page.to_i
+      notes = Note.where(book_id: book.id, user_id: current_user.try &.id).select
     else
-      notes = Note.all
+      notes = Note.where(user_id: current_user.try &.id).select
     end
     render "index.slang"
   end
@@ -25,9 +25,7 @@ class NoteController < ApplicationController
     else
       notes = Note.all
     end
-    respond_with do
-      json notes.to_json
-    end
+    notes.to_json
   end
 
   def show

@@ -75,6 +75,23 @@ a:hover {
   display: none !important;
 }
 
+.pane {
+  position: relative;
+  display: flex;
+  flex-basis: 100%;
+  margin-left: 0.6em;
+  margin-right: 0.6em;
+  display: flex;
+  height: 100%;
+  border: 0;
+  color: #dcd7ba;
+  .buttons {
+    top: 0.3em;
+    right: 0.3em;
+    margin: 0.3em;
+    position: absolute;
+  }
+}
 .editor {
   display: flex;
   height: calc(100vh - 1.2em);
@@ -82,23 +99,6 @@ a:hover {
   /* Track */
   ::-webkit-scrollbar-track {
     background: $background-darker;
-  }
-  .pane {
-    position: relative;
-    display: flex;
-    flex-basis: 100%;
-    margin-left: 0.6em;
-    margin-right: 0.6em;
-    display: flex;
-    height: 100%;
-    border: 0;
-    color: #dcd7ba;
-    .buttons {
-      top: 0.3em;
-      right: 0.3em;
-      margin: 0.3em;
-      position: absolute;
-    }
   }
   .markdown {
     padding: 0.6em;
@@ -117,34 +117,34 @@ a:hover {
 
     transition: border-color 0.2s ease-in-out;
   }
+}
 
-  .preview {
-    padding: 0.6em;
-    // border: 1px solid #ccc;
-    background-color: $background-darker;
-    border-radius: 4px;
-    overflow: auto;
-    flex-grow: 1;
-    flex-shrink: 1;
-    border: 1px solid $background-darker;
-    border-radius: 4px;
-    hr {
-      background-color: $white;
-      height: 2px;
-    }
+.preview {
+  padding: 0.6em;
+  // border: 1px solid #ccc;
+  background-color: $background-darker;
+  border-radius: 4px;
+  overflow: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border: 1px solid $background-darker;
+  border-radius: 4px;
+  hr {
+    background-color: $white;
+    height: 2px;
+  }
 
-    h1 {
-      color: $yellow;
-    }
+  h1 {
+    color: $yellow;
+  }
 
-    code {
-      color: $red;
-    }
+  code {
+    color: $red;
+  }
 
-    &.changed {
-      border-color: #76946a;
-      transition: border-color 0.2s ease-in-out;
-    }
+  &.changed {
+    border-color: #76946a;
+    transition: border-color 0.2s ease-in-out;
   }
 }
 
@@ -409,4 +409,19 @@ body {
 
 .day-name {
   background: #eee;
+}
+
+.note-table {
+  .note-card {
+    min-height: 100px !important;
+    height: 100%;
+    width: 100%;
+    &__note {
+      height: 100%;
+    }
+  }
+}
+
+.preview-note__body {
+  display: none;
 }
