@@ -5,6 +5,7 @@ CREATE TABLE notes (
   book_id BIGINT,
   title TEXT,
   body TEXT,
+  is_hidden BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP,
   updated_at TIMESTAMP
 );

@@ -57,7 +57,7 @@ class User < Granite::Base
       raise "Could not create default book: #{default.errors}"
       return
     end
-    note = Note.new body: "# Whiteboard  \n\n", title: "Whiteboard", user_id: id, book_id: default.id
+    note = Note.new body: "# Whiteboard  \n\n", title: "Whiteboard", user_id: id, book_id: default.id, is_hidden: true
     note.save
     Book.find_or_create_by title: "Diary", user_id: id, icon: "gg-album", is_system: true
     Book.find_or_create_by title: "Calendar", user_id: id, icon: "gg-calendar-today", is_system: true

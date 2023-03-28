@@ -11,6 +11,7 @@ class Note < Granite::Base
   column id : Int64, primary: true
   column title : String?
   column body : String?
+  column is_hidden : Bool = false
   timestamps
 
   property tag_names : Array(String) | Nil = nil
