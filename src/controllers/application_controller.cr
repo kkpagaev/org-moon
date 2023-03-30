@@ -10,6 +10,10 @@ class ApplicationController < Amber::Controller::Base
     context.current_user
   end
 
+  def current_user!
+    current_user || raise "Calendar not found"
+  end
+
   def current_books
     if user = current_user
       user.books.select { |book| !book.is_system }

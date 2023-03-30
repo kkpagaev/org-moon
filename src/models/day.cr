@@ -43,14 +43,15 @@ class Day < Granite::Base
   before_save :save_note
 
   private def save_note
+    u_id = self.user_id || raise "User must be set"
     if page = @page
+      user_id = self.user_id
       note = Note.new
       note.title = page.title
       note.body = page.to_s
-      note.user_id = user_id
+      note.user_id = u_id
 
-      book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true
-      note.book = book
+      note.book = Book.find_calendar!(u_id)
       if note.title != date
         raise "Title and date must match"
       end

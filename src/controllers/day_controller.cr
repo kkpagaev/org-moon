@@ -1,14 +1,11 @@
 class DayController < ApplicationController
   property day : Day
 
+  # TODO make date validation
   def initialize(args)
     super(args)
     if date = params[:date]
-      if day = Day.find_by(date: date, user_id: current_user.try &.id)
-        @day = day
-      else
-        @day = Day.new user_id: current_user.try &.id, date: params[:date]
-      end
+      @day = Day.find_or_initialize_by(date: date, user_id: current_user!.id)
     else
       raise "No date provided"
     end
@@ -21,11 +18,9 @@ class DayController < ApplicationController
   end
 
   def save
-    if user_id = current_user.try &.id
-      save_day_params.validate!
-      day.page = params[:body]
-      day.save!
-    end
+    save_day_params.validate!
+    day.page = params[:body]
+    day.save!
     redirect_to "/day/#{params[:date]}"
   end
 
