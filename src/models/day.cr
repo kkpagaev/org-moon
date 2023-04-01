@@ -18,6 +18,7 @@ class Day < Granite::Base
       Markdown::Event.new(title: "foo", description: "description", start_at: Time.utc(2015, 1, 1, 8, 30), end_at: Time.utc(2015, 1, 1, 9, 30)),
       Markdown::Event.new(title: "test", description: nil, start_at: Time.utc(2015, 1, 1, 10, 30), end_at: nil),
     ])
+    title = 
     builder = Markdown::Builder::Page.new(date, ["foo", "bar"], list_builder)
 
     # TODO: use a relation
@@ -77,4 +78,11 @@ class Day < Granite::Base
     end
   end
 
+  validate :date, "Date must be in the format DD.MM.YYYY", ->(day : Day) do
+    if day.date =~ /\d{2}\.\d{2}\.\d{4}/
+      true
+    else
+      false
+    end
+  end
 end
