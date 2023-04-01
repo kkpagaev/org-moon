@@ -24,7 +24,7 @@ class UserController < ApplicationController
 
     if user.save
       session[:user_id] = user.id
-      redirect_to "/signin", flash: {"success" => "Created User successfully."}
+      redirect_to "/", flash: {"success" => "Created User successfully."}
     else
       flash[:danger] = "Could not create User!"
       render "new.slang"
