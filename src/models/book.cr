@@ -2,7 +2,7 @@ class Book < Granite::Base
   connection pg
   table books
 
-  column icon : String
+  column icon : String = "gg-album"
 
   belongs_to :user
 

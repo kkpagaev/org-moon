@@ -3,6 +3,8 @@ class BookController < ApplicationController
     only [:show, :edit, :update, :destroy] { set_book }
   end
 
+  getter icons = ["gg-calendar", "gg-album"]
+
   def index
     books = Book.where(user_id: current_user.try &.id)
     render "index.slang"
@@ -23,7 +25,6 @@ class BookController < ApplicationController
   def create
     book = Book.new book_params.validate!
     book.user_id = current_user.not_nil!.id
-    book.icon = "gg-file"
     if book.save
       redirect_to action: :index, flash: {"success" => "Book has been created."}
     else
@@ -50,6 +51,7 @@ class BookController < ApplicationController
   private def book_params
     params.validation do
       required :title
+      required :icon
     end
   end
 

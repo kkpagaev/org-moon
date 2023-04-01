@@ -425,3 +425,40 @@ body {
 .preview-note__body {
   display: none;
 }
+
+// .icon-picker {
+// color: $background-lighter;
+// background-color: $font;
+// position: relative;
+// padding: 0.5em;
+// cursor: pointer;
+// &__selected {
+// &::after {
+// content: "▼";
+// position: absolute;
+// right: 0;
+// top: 20%;
+// }
+// }
+// &__options {
+// display: flex;
+// padding: 0.5em;
+// border: 1px solid $background-lighter;
+// border-radius: 5px;
+// position: absolute;
+// top: 130%;
+// left: -170%;
+// background-color: $font;
+// width: 200px;
+// }
+// }
+
+.icon-input {
+  display: none;
+  & + .icon-input-lable {
+  }
+  &:checked + .icon-input-lable {
+    font-weight: bold;
+    color: $pink;
+  }
+}
