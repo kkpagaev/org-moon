@@ -54,6 +54,7 @@ Amber::Server.configure do
     post "/day/:date", DayController, :save
 
     get "/", NoteController, :whiteboard
+    get "/api/user/me", UserController, :me
   end
 
   routes :api do

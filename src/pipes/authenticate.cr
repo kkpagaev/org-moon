@@ -3,8 +3,17 @@ class HTTP::Server::Context
 end
 
 class CurrentUser < Amber::Pipe::Base
+  private def get_user_id(context)
+    if user_id = context.session["user_id"]
+      user_id
+    elsif token = context.request.headers["Authorization"]?
+      payload, header = JWT.decode(token, verify: false, validate: false)
+      payload["user_id"]
+    end
+  end
+
   def call(context)
-    user_id = context.session["user_id"]?
+    user_id = get_user_id(context)
     if user = User.find user_id
       context.current_user = user
     end

@@ -5,6 +5,10 @@ class UserController < ApplicationController
     only [:show, :edit, :update, :destroy] { set_user }
   end
 
+  def me
+    current_user.to_json
+  end
+
   def show
     render("show.slang")
   end
