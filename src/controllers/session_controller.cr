@@ -22,4 +22,14 @@ class SessionController < ApplicationController
     flash[:info] = "Logged out. See ya later!"
     redirect_to "/"
   end
+
+  def create_api
+    user = User.find_by(email: params["email"].to_s)
+    if user && user.authenticate(params["password"].to_s)
+      token = JWT.encode({ "user_id" => user.id }, "SecretKey", JWT::Algorithm::HS256)
+      { token: token }
+    else
+      { error: "Invalid email or password" }
+    end
+  end
 end

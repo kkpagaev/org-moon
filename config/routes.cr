@@ -59,6 +59,7 @@ Amber::Server.configure do
   routes :api do
     post "/api/notes", NoteController, :create
     get "/api/notes", NoteController, :scroll
+    post "/api/signin", SessionController, :create_api
   end
 
   routes :static do

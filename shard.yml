@@ -17,6 +17,8 @@ targets:
     main: lib/amber/src/amber/cli.cr
 
 dependencies:
+  jwt:
+    github: crystal-community/jwt
   moon-markdown:
     github: kappagaev/moon-markdown
   amber:
