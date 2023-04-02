@@ -33,12 +33,12 @@ class CalendarController < ApplicationController
       @month = Time.utc(year.to_i, month.to_i, 1, 0, 0, 0).first_day_of_month
     end
     days = Day.all("WHERE date ~ '^[0-9]{2}.#{@month.to_s("%m.%Y")}'")
-# events = Event.where(:start_at, :gt, @month)
-# .where(:end_at, :lt, @month.next_month)
-# .where("user_id = $", current_user.try &.id)
-# .group_by([:day_id, :note_id, :user_id, :id]).select
+    # events = Event.where(:start_at, :gt, @month)
+    # .where(:end_at, :lt, @month.next_month)
+    # .where("user_id = $", current_user.try &.id)
+    # .group_by([:day_id, :note_id, :user_id, :id]).select
 
-# days.to_json
+    # days.to_json
 
     render "index.slang"
   end

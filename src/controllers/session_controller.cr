@@ -26,10 +26,10 @@ class SessionController < ApplicationController
   def create_api
     user = User.find_by(email: params["email"].to_s)
     if user && user.authenticate(params["password"].to_s)
-      token = JWT.encode({ "user_id" => user.id }, "SecretKey", JWT::Algorithm::HS256)
-      { token: token }.to_json
+      token = JWT.encode({"user_id" => user.id}, "SecretKey", JWT::Algorithm::HS256)
+      {token: token}.to_json
     else
-      { error: "Invalid email or password" }.to_json
+      {error: "Invalid email or password"}.to_json
     end
   end
 end

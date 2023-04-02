@@ -18,8 +18,8 @@ class Day < Granite::Base
       Markdown::Event.new(title: "foo", description: "description", start_at: Time.utc(2015, 1, 1, 8, 30), end_at: Time.utc(2015, 1, 1, 9, 30)),
       Markdown::Event.new(title: "test", description: nil, start_at: Time.utc(2015, 1, 1, 10, 30), end_at: nil),
     ])
-    title = 
-    builder = Markdown::Builder::Page.new(date, ["foo", "bar"], list_builder)
+    title =
+      builder = Markdown::Builder::Page.new(date, ["foo", "bar"], list_builder)
 
     # TODO: use a relation
     book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true

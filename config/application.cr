@@ -7,7 +7,6 @@
 # > We recommend not modifying the order of the requires since the order will
 # affect the behavior of the application.
 
-
 require "amber"
 require "./settings"
 require "./logger"
