@@ -18,7 +18,10 @@
                 .buttons
                   == link_to("Edit", "/notes/#{note.id}/edit", class: "btn btn-success btn-sm")
                   == link_to("Delete", "/notes/#{ note.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
-                .preview-note__body
-                  == note.body.try &.[0..50]
-                .preview-note__preview.preview
+                .preview-note__content.preview
+                  h2.preview-note__title
+                    == note.title
+                  .preview-note__tags
+                    - note.tags.each do |tag|
+                      == link_to(tag.name, "/notes?book_id=#{book.try &.id}&tag_id=#{tag.id}", class: "tag", style: "background-color: #{tag.color}; color: #{tag.text_color}")
 

@@ -1,3 +1,10 @@
+module Markdown::Page
+  class Base
+    def to_json(io)
+    end
+  end
+end
+
 class Day < Granite::Base
   connection pg
   table days

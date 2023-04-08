@@ -17,8 +17,13 @@
             .calendar--number
               | #{i + 1}
             .calendar--content
-              - day = days.find {|d| d.date[0..1].to_i == i + 1}
-              - if day
-                  - day.events.each do |event|
-                      | #{event.to_s}
-                    br
+                - day = days.find {|d| d.date[0..1].to_i == i + 1}
+                - if day
+                  .calendar--content__tags
+                    - day.note.tags.each do |tag|
+                      span.tag style="background-color: #{tag.color}; color: #{tag.text_color}"
+                        == tag.name.to_s
+                  .calendar--content__events
+                      - day.events.each do |event|
+                          | #{event.to_s}
+                        br
