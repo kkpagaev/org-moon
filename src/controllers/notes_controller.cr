@@ -7,9 +7,14 @@ class NoteController < ApplicationController
 
   def index
     book = Book.find params[:book_id]?
-    page = params[:page]? || 1
+    tag_id = params[:tag_id]?
     if book
-      notes = Note.where(book_id: book.id, user_id: current_user.try &.id).select
+      qb = Note.where(book_id: book.id, user_id: current_user.try &.id)
+
+      if tag_id
+        qb = qb.where("id IN (SELECT note_id FROM tagging WHERE tag_id = $)", tag_id)
+      end
+      notes = qb.select
     else
       notes = Note.where(user_id: current_user.try &.id).select
     end

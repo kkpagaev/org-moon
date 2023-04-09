@@ -499,3 +499,10 @@ body {
     display: flex;
   }
 }
+
+h2 {
+  a {
+    color: $font;
+    text-decoration: none;
+  }
+}

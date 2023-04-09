@@ -2,7 +2,8 @@
   .col-sm-6
     - title = book.try &.title || "All notes"
     h2
-      = title
+      a href="/notes?book_id=#{book.try &.id}" Notes
+        = title
   - if b = book
     .col-sm-6
       a.btn.btn-success.btn-sm href="/notes/new?book_id=#{book.try &.id}" New
