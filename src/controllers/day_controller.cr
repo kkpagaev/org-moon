@@ -1,7 +1,6 @@
 class DayController < ApplicationController
   property day : Day
 
-  # TODO make date validation
   def initialize(args)
     super(args)
     if date = params[:date]

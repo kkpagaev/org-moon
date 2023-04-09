@@ -1,18 +1,20 @@
 class Note < Granite::Base
   module NoteBuilder
-    property title : String
+    abstract def title : String
+    abstract def tags : Array(String)
+    abstract def content : String?
 
-    abstract def build : String
+    abstract def body : String
   end
 
   module NoteParser
     abstract def title : String
     abstract def tags : Array(String)
-    abstract def body : String
+    abstract def content : String?
   end
 
   def self.default(book : Book, builder : NoteBuilder)
-    note = Note.new title: builder.title, body: builder.build
+    note = Note.new title: builder.title, body: builder.body
     note.book = book
 
     note
@@ -51,9 +53,18 @@ class Note < Granite::Base
     end
   end
 
-  def body=(parser : NoteParser)
-    note.title = parser.title
+  def self.new(book : Book, user : User, parser : NoteBuilder)
+    note = Note.new title: parser.title, body: parser.body
+    note.book_id = book.id
+    note.user_id = user.id
     note.tag_names = parser.tags
-    note.body = parser.body
+
+    note
+  end
+
+  def body=(builder : NoteBuilder)
+    title = builder.title
+    tag_names = builder.tags
+    body = builder.body
   end
 end

@@ -41,11 +41,15 @@ class NoteController < ApplicationController
   getter books = [] of Book
 
   def create
-    note = Note.new notes_params.validate!
-    note.user_id = current_user!.id
-    note.tag_names = params[:tags].split(",")
+    tags = params[:tags].split(",")
+    notes_params.validate!
+    builder = NoteBuilder::Note.new params[:title] || "No title", tags, ""
 
-    books = Book.where(user_id: current_user.try &.id)
+    book = Book.where(id: params[:book_id], user_id: current_user.try &.id).select.first
+
+    note = Note.new book: book, user: current_user!, parser: builder
+
+    note.body = builder
 
     if note.save
       tags = params[:tags].split(" ")
@@ -78,7 +82,7 @@ class NoteController < ApplicationController
   private def notes_params
     params.validation do
       required :book_id
-      required :title
+      optional :title
       optional :tags
     end
   end
