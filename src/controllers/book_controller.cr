@@ -23,6 +23,12 @@ class BookController < ApplicationController
   end
 
   def create
+    unless book_params.valid?
+      flash[:danger] = book_params.errors.first.message
+      render "new.slang"
+      return
+    end
+
     book = Book.new book_params.validate!
     book.user_id = current_user.not_nil!.id
     if book.save
@@ -34,6 +40,11 @@ class BookController < ApplicationController
   end
 
   def update
+    unless book_params.valid?
+      redirect_to action: :edit, flash: {"danger" => book_params.errors.first.message}, params: { "id" => book.try &.id.to_s }
+      return
+    end
+
     book.set_attributes book_params.validate!
     if book.save
       redirect_to action: :index, flash: {"success" => "Book has been updated."}

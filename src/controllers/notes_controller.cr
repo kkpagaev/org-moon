@@ -16,18 +16,6 @@ class NoteController < ApplicationController
     render "index.slang"
   end
 
-  # infinite scroll json api
-  def scroll
-    book = Book.find params[:book_id]?
-    page = params[:page]? || 1
-    if book
-      notes = Note.paginate book_id: book.id, page: page.to_i
-    else
-      notes = Note.all
-    end
-    notes.to_json
-  end
-
   def show
     render "show.slang"
   end
@@ -69,14 +57,16 @@ class NoteController < ApplicationController
   end
 
   def update
-    note.set_attributes update_note_params.validate!
-    parser = MarkdownParser.new note.body.not_nil!
-    note.title = parser.title
-    note.tag_names = parser.tags
-    if note.save
+    begin
+      note.set_attributes update_note_params.validate!
+      parser = MarkdownParser.new note.body.not_nil!
+      note.title = parser.title
+      note.tag_names = parser.tags
+      note.save!
+
       redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been updated."}
-    else
-      flash[:danger] = "Could not update Note!"
+    rescue e
+      flash[:danger] = "Syntax error"
       render "edit.slang"
     end
   end

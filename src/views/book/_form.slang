@@ -8,7 +8,7 @@
   .row
     .col-6
       .form-group
-        == text_field(name: "title", content: book.title, placeholder: "Title", class: "form-control", size: "30x10")
+        == text_area(name: "title", content: book.title, placeholder: "Title", class: "form-control", errors: "cannot be blank", size: "30x10")
         == hidden_field(name: "icon", value: book.icon)
       .form-group.form-check-inline
           - icons.each do |icon|

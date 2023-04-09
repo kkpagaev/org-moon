@@ -46,8 +46,6 @@ body {
 .btn.disabled {
   background-color: $background;
   color: #dcd7ba;
-  pointer-events: none;
-
   &:hover {
     background-color: $background;
     color: #dcd7ba;
@@ -387,7 +385,6 @@ body {
       padding: 0.5em;
     }
     .calendar--content {
-      align-self: flex-end;
     }
     &.active {
       border-color: #2d4f67;

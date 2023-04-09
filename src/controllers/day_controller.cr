@@ -20,8 +20,14 @@ class DayController < ApplicationController
   def save
     save_day_params.validate!
     day.page = params[:body]
-    day.save!
-    redirect_to "/day/#{params[:date]}"
+    begin
+      day.save!
+      flash[:success] = "Saved"
+      redirect_to "/day/#{params[:date]}"
+    rescue e
+      flash[:danger] = "Error: #{e.message}"
+      editor
+    end
   end
 
   private def save_day_params
