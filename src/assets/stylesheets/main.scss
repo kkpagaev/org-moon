@@ -292,7 +292,8 @@ body {
 .alert-popup {
   position: absolute;
   top: 0;
-  right: 0;
+  left: auto;
+  right: auto;
 
   .alert {
     position: relative;
@@ -300,8 +301,8 @@ body {
   }
 }
 #hideMe {
-  -webkit-animation: cssAnimation 5s forwards;
-  animation: cssAnimation 5s forwards;
+  -webkit-animation: cssAnimation 3s forwards;
+  animation: cssAnimation 3s forwards;
 }
 @keyframes cssAnimation {
   0% {
@@ -317,12 +318,16 @@ body {
 }
 @-webkit-keyframes cssAnimation {
   0% {
+    height: 100%;
     opacity: 1;
   }
-  90% {
-    opacity: 1;
+  50% {
+    opacity: 0.5;
+    height: 50%;
   }
   100% {
+    visibility: hidden;
+    height: 0;
     opacity: 0;
   }
 }

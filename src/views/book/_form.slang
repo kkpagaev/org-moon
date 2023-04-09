@@ -18,4 +18,3 @@
 
 
   == submit("Submit", class: "btn btn-success btn-sm")
-  == link_to("Back", "/books", class: "btn btn-light btn-sm")

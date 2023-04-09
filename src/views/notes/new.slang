@@ -15,5 +15,4 @@ h1 New Note
   .form-group
     == text_area(name: "tags", content: "" , placeholder: "Tags", class: "form-control")
   == submit("Submit", class: "btn btn-success btn-sm")
-  == link_to("Back", "/notes", class: "btn btn-light btn-sm")
 
