@@ -52,6 +52,7 @@ class BookController < ApplicationController
     params.validation do
       required :title
       required :icon
+      optional :is_hidden
     end
   end
 
