@@ -13,7 +13,7 @@ class DayController < ApplicationController
   end
 
   def editor
-    note = day.note_id ? day.note : day.default_note
+    note = day.note_id ? day.note : day.default
     render "edit.slang"
   end
 

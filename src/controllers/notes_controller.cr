@@ -38,18 +38,13 @@ class NoteController < ApplicationController
     render "edit.slang"
   end
 
-  def build_markdown(name, tags, content)
-    tag_names = tags.gsub(/\s+/, "").split(",")
-    Markdown::Builder::Page.new(name, tag_names, content).to_s
-  end
-
   getter books = [] of Book
 
   def create
     note = Note.new notes_params.validate!
-    note.user_id = current_user.try &.id
-    note.body = build_markdown(params[:title], params[:tags], "")
+    note.user_id = current_user!.id
     note.tag_names = params[:tags].split(",")
+
     books = Book.where(user_id: current_user.try &.id)
 
     if note.save
@@ -64,9 +59,7 @@ class NoteController < ApplicationController
   def update
     begin
       note.set_attributes update_note_params.validate!
-      parser = MarkdownParser.new note.body.not_nil!
-      note.title = parser.title
-      note.tag_names = parser.tags
+
       note.save!
 
       redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been updated."}

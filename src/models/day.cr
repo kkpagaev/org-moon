@@ -26,24 +26,13 @@ class Day < Granite::Base
 
   getter page : Markdown::Page::Day | Nil = nil
 
-  def default_note : Note | ::Nil
-    list_builder = Markdown::Builder::EventList.new([
-      Markdown::Event.new(title: "exercises", description: "", start_at: Time.utc(2015, 1, 1, 8, 30), end_at: Time.utc(2015, 1, 1, 9, 30)),
-      Markdown::Event.new(title: "", description: "", start_at: Time.utc(2015, 1, 1, 10, 30), end_at: nil),
-      Markdown::Event.new(title: "", description: "", start_at: Time.utc(2015, 1, 1, 12, 30), end_at: nil),
-      Markdown::Event.new(title: "", description: "", start_at: Time.utc(2015, 1, 1, 15, 45), end_at: nil),
-      Markdown::Event.new(title: "", description: "", start_at: Time.utc(2015, 1, 1, 18, 0), end_at: nil),
-    ])
-    tags = [date.day_name]
-    builder = Markdown::Builder::Page.new(date, tags, list_builder)
-
-    # TODO: use a relation
+  def default
     book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true
+    tags = [date.day_name]
 
-    note = Note.new title: date, body: builder.to_s, user_id: user_id
-    note.book = book
+    builder = NoteBuilder::Calendar.new(date, tags, nil)
 
-    note
+    note = Note.default book, builder
   end
 
   private def parse_md(body : String)
@@ -83,7 +72,11 @@ class Day < Granite::Base
   private def save_events
     if page = @page
       events = page.events.map do |event_md|
-        event = Event.new start_at: event_md.start_at, end_at: event_md.end_at, title: event_md.title, description: event_md.description
+        event = Event.new start_at: event_md.start_at,
+          end_at: event_md.end_at,
+          title: event_md.title,
+          description: event_md.description
+
         event.user_id = user_id
         event.day_id = id
         event

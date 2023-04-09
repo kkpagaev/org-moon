@@ -1,4 +1,23 @@
 class Note < Granite::Base
+  module NoteBuilder
+    property title : String
+
+    abstract def build : String
+  end
+
+  module NoteParser
+    abstract def title : String
+    abstract def tags : Array(String)
+    abstract def body : String
+  end
+
+  def self.default(book : Book, builder : NoteBuilder)
+    note = Note.new title: builder.title, body: builder.build
+    note.book = book
+
+    note
+  end
+
   connection pg
   table notes
 
@@ -10,7 +29,7 @@ class Note < Granite::Base
 
   column id : Int64, primary: true
   column title : String?
-  column body : String?
+  column body : String
   column is_hidden : Bool = false
   timestamps
 
@@ -32,16 +51,9 @@ class Note < Granite::Base
     end
   end
 
-  def self.paginate(page : Int32, book_id : Int64 | Nil = nil)
-    if book_id.nil?
-      Note.offset((page - 1) * 1)
-        .limit(1)
-        .select
-    else
-      Note.where(book_id: book_id)
-        .offset((page - 1) * 1)
-        .limit(1)
-        .select
-    end
+  def body=(parser : NoteParser)
+    note.title = parser.title
+    note.tag_names = parser.tags
+    note.body = parser.body
   end
 end
