@@ -77,8 +77,9 @@ class NoteController < ApplicationController
   end
 
   def destroy
+    raise "Not allowed" if note.is_hidden
     note.destroy
-    redirect_to action: :index, flash: {"success" => "Note has been deleted."}
+    redirect_to action: :index, flash: {"success" => "Note has been deleted."}, params: {"book_id" => note.book_id.to_s}
   end
 
   private def notes_params

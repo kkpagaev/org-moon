@@ -52,7 +52,7 @@ class User < Granite::Base
   private getter new_password : String?
 
   private def create_default_books
-    default = Book.find_or_create_by title: "Default", user_id: id, icon: "gg-calendar-two", is_system: false
+    default = Book.find_or_create_by title: "Default", user_id: id, icon: "gg-calendar-two", is_system: true
     if default.errors.any?
       raise "Could not create default book: #{default.errors}"
       return

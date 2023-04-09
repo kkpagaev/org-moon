@@ -88,6 +88,9 @@ a:hover {
     right: 0.3em;
     margin: 0.3em;
     position: absolute;
+    & form {
+      display: inline-block;
+    }
   }
 }
 .editor {
