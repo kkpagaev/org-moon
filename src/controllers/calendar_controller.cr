@@ -22,6 +22,10 @@ struct Time
   def month_name
     ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][month - 1]
   end
+
+  def day_name
+    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"][day_of_week.to_i - 1]
+  end
 end
 
 class CalendarController < ApplicationController

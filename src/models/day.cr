@@ -5,6 +5,12 @@ module Markdown::Page
   end
 end
 
+class String
+  def day_name
+    Time.parse(self, "%d.%m.%Y", Time::Location::UTC).day_name
+  end
+end
+
 class Day < Granite::Base
   connection pg
   table days
@@ -28,9 +34,8 @@ class Day < Granite::Base
       Markdown::Event.new(title: "", description: "", start_at: Time.utc(2015, 1, 1, 15, 45), end_at: nil),
       Markdown::Event.new(title: "", description: "", start_at: Time.utc(2015, 1, 1, 18, 0), end_at: nil),
     ])
-    tags = ["Monday"]
-    title =
-      builder = Markdown::Builder::Page.new(date, tags, list_builder)
+    tags = [date.day_name]
+    builder = Markdown::Builder::Page.new(date, tags, list_builder)
 
     # TODO: use a relation
     book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true
