@@ -18,9 +18,9 @@ class DayController < ApplicationController
   end
 
   def save
-    save_day_params.validate!
-    day.page = params[:body]
     begin
+      save_day_params.validate!
+      day.page = params[:body]
       day.save!
       flash[:success] = "Saved"
       redirect_to "/day/#{params[:date]}"

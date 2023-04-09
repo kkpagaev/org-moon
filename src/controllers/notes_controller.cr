@@ -66,7 +66,7 @@ class NoteController < ApplicationController
 
       redirect_to "/notes/#{note.id}/edit", flash: {"success" => "Note has been updated."}
     rescue e
-      flash[:danger] = "Syntax error"
+      flash[:danger] = "Error: #{e.message}"
       render "edit.slang"
     end
   end
