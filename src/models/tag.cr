@@ -33,7 +33,7 @@ class Tag < Granite::Base
   end
 
   def text_color
-    hex_color = color.gsub("#","")
+    hex_color = color.gsub("#", "")
     red = hex_color[0..1].to_i(16)
     green = hex_color[2..3].to_i(16)
     blue = hex_color[4..5].to_i(16)
