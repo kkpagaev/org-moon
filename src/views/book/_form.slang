@@ -8,12 +8,12 @@
   .row
     .col-6
       .form-group
-        == text_area(name: "title", content: book.title, placeholder: "Title", class: "form-control", errors: "cannot be blank", size: "30x10")
+        == text_field(name: "title", content: book.title, placeholder: "Title", class: "form-control", errors: "cannot be blank", size: "30x10")
         == hidden_field(name: "icon", value: book.icon)
       .form-group.form-check-inline
           - icons.each do |icon|
             .form-check
-              input class="form-check-input icon-input" type="radio" name="icon" id="icon-#{icon}" value="#{icon}" checked="#{book.icon == icon}"
+              input class="form-check-input icon-input" type="radio" name="icon" id="icon-#{icon}" value="#{icon}"
               label class="form-check-label icon-input-lable #{icon}" for="icon-#{icon}"
 
 

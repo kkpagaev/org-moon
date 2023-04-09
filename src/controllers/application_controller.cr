@@ -16,7 +16,7 @@ class ApplicationController < Amber::Controller::Base
 
   def current_books
     if user = current_user
-      user.books.select { |book| !book.is_system }
+      user.books.select { |book| !book.is_system || !book.is_hidden }
     else
       [] of Book
     end

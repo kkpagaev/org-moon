@@ -9,6 +9,7 @@ class Book < Granite::Base
   column id : Int64, primary: true
   column title : String?
   column is_system : Bool = false
+  column is_hidden : Bool = false
 
   timestamps
 

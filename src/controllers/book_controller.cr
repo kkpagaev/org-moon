@@ -3,7 +3,7 @@ class BookController < ApplicationController
     only [:show, :edit, :update, :destroy] { set_book }
   end
 
-  getter icons = ["gg-calendar", "gg-album"]
+  getter icons = ["gg-calendar", "gg-album", "gg-calculator", "gg-box", "gg-bookmark", "gg-camera", "gg-folder", "gg-headset", "gg-music-note", "gg-smartphone"]
 
   def index
     books = Book.where(user_id: current_user.try &.id).select
