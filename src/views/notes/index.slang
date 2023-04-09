@@ -7,7 +7,7 @@
   - if b = book
     .col-sm-6
       a.btn.btn-success.btn-sm href="/notes/new?book_id=#{book.try &.id}" New
-      - if b.is_system
+      - if !b.is_system
         == link_to("Edit", "/books/#{b.id}/edit", class: "btn btn-success btn-sm")
 .container-fluid
   .note-table

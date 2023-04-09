@@ -13,13 +13,8 @@
       .form-group.form-check-inline
           - icons.each do |icon|
             .form-check
-              - selected = book.icon == icon ? "checked" : ""
-              - if book.icon == icon
-                input class="form-check-input icon-input" type="radio" name="icon" id="icon-#{icon}"
-                label class="form-check-label icon-input-lable #{icon}" for="icon-#{icon}"
-              - else
-                input class="form-check-input icon-input" type="radio" name="icon" id="icon-#{icon}"
-                label class="form-check-label icon-input-lable #{icon}" for="icon-#{icon}"
+              input class="form-check-input icon-input" type="radio" name="icon" id="icon-#{icon}" value="#{icon}" checked="#{book.icon == icon}"
+              label class="form-check-label icon-input-lable #{icon}" for="icon-#{icon}"
 
 
   == submit("Submit", class: "btn btn-success btn-sm")
