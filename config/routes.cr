@@ -55,11 +55,11 @@ Amber::Server.configure do
 
     get "/", NoteController, :whiteboard
     get "/api/user/me", UserController, :me
+    get "/api/calendar", CalendarController, :export
   end
 
   routes :api do
     post "/api/signin", SessionController, :create_api
-    get "/api/calendar", CalendarController, :index_json
   end
 
   routes :static do

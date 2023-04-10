@@ -11,7 +11,7 @@ class ApplicationController < Amber::Controller::Base
   end
 
   def current_user!
-    current_user || raise "Calendar not found"
+    current_user || raise "Authentication required"
   end
 
   def current_books

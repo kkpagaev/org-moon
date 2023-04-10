@@ -38,16 +38,18 @@ class CalendarController < ApplicationController
     end
     days = Day.all("WHERE date ~ '^[0-9]{2}.#{@month.to_s("%m.%Y")}' AND user_id = #{current_user!.id}")
 
-    render "index.slang"
+    respond_with do
+      html render "index.slang"
+      json days.to_json
+    end
   end
 
-  def index_json
-    if param = params[:month]?
-      month, year = param.split(".")
-      @month = Time.utc(year.to_i, month.to_i, 1, 0, 0, 0).first_day_of_month
-    end
-    days = Day.all("WHERE date ~ '^[0-9]{2}.#{@month.to_s("%m.%Y")}' AND user_id = #{current_user!.id}")
+  def export
+    notes = Note.all("WHERE id IN (SELECT note_id FROM days
+                      WHERE user_id = #{current_user!.id})")
 
-    days.to_json
+    respond_with do
+      json notes.to_json
+    end
   end
 end
