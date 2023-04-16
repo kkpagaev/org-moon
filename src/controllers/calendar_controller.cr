@@ -36,6 +36,7 @@ class CalendarController < ApplicationController
       month, year = param.split(".")
       @month = Time.utc(year.to_i, month.to_i, 1, 0, 0, 0).first_day_of_month
     end
+    # sqli
     days = Day.all("WHERE date ~ '^[0-9]{2}.#{@month.to_s("%m.%Y")}' AND user_id = #{current_user!.id}")
 
     respond_with do

@@ -26,6 +26,7 @@ class SessionController < ApplicationController
   def create_api
     user = User.find_by(email: params["email"].to_s)
     if user && user.authenticate(params["password"].to_s)
+      # todo make it into config file
       token = JWT.encode({"user_id" => user.id}, "SecretKey", JWT::Algorithm::HS256)
       {token: token}.to_json
     else
