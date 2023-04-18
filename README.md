@@ -23,7 +23,7 @@ This is a project written using [Amber](https://amberframework.org). Enjoy!
 ## Roadmap
 
 - [ ] Fix O(n + 1) calendar queries
-- [ ] Move jwt secret to env
+- [X] Move jwt secret to env
 - [ ] Fix SQL injections
 - [ ] Make jwt token expire
 - [ ] Calendar google sync

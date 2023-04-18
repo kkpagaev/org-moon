@@ -1,5 +1,4 @@
 require "moon-markdown"
-require "jwt"
 
 require "../config/application"
 require "./markdown"
