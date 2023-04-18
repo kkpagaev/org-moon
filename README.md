@@ -25,7 +25,7 @@ This is a project written using [Amber](https://amberframework.org). Enjoy!
 - [ ] Fix O(n + 1) calendar queries
 - [X] Move jwt secret to env
 - [ ] Fix SQL injections
-- [ ] Make jwt token expire
+- [X] Make jwt token expire
 - [ ] Calendar google sync
   - [ ] Google api integration
     - [ ] Create google api client

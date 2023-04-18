@@ -6,11 +6,12 @@ module JWT
   end
 
   def encode(payload) : String
+    payload.merge!({"exp" => Time.utc.to_unix + 4.weeks.to_i})
     self.encode(payload, @@secret, JWT::Algorithm::HS256)
   end
 
   def decode(token) : Hash
-    self.decode(token, key: @@secret, verify: true, validate: false)
+    self.decode(token, key: @@secret, verify: true, validate: true)
   end
 
   def config
