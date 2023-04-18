@@ -10,7 +10,7 @@ module JWT
     self.encode(payload, @@secret, JWT::Algorithm::HS256)
   end
 
-  def decode(token) : Hash
+  def decode(token)
     self.decode(token, key: @@secret, verify: true, validate: true)
   end
 

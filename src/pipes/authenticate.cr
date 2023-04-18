@@ -7,7 +7,7 @@ class CurrentUser < Amber::Pipe::Base
     if user_id = context.session["user_id"]
       user_id
     elsif token = context.request.headers["Authorization"]?
-      payload, header = JWT.decode(token, key: "SecretKey", verify: true, validate: false)
+      payload, header = JWT.decode(token)
       payload["user_id"]
     end
   end
