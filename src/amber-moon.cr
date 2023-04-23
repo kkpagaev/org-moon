@@ -1,4 +1,7 @@
 require "moon-markdown"
+require "crest"
+
+require "./google/*"
 
 require "../config/application"
 require "./markdown"

@@ -17,6 +17,8 @@ targets:
     main: lib/amber/src/amber/cli.cr
 
 dependencies:
+  crest:
+    github: mamantoha/crest
   jwt:
     github: crystal-community/jwt
   moon-markdown:
