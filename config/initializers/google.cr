@@ -19,5 +19,7 @@ Google.config do |config|
   config.token_uri = data["token_uri"].to_s
   config.auth_provider_x509_cert_url = data["auth_provider_x509_cert_url"].to_s
   config.client_secret = data["client_secret"].to_s
+  # move to env
+  config.redirect_uri = "http://localhost:3000/oauth2/callback"
 end
 
