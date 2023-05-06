@@ -62,7 +62,7 @@ class NoteController < ApplicationController
 
   def update
     begin
-      note.set_attributes update_note_params.validate!
+      note.body = update_note_params.validate!["body"] || raise("No body")
 
       note.save!
 

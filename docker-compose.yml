@@ -50,6 +50,12 @@ services:
       PGADMIN_DEFAULT_PASSWORD: user
     ports:
       - "8080:80"
+  redis:
+    image: redis
+    restart: always
+    command: redis-server
+    ports:
+      - "6379:6379"
 
 volumes:
   db:

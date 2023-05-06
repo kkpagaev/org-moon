@@ -38,6 +38,16 @@ class Note < Granite::Base
   property tag_names : Array(String) | Nil = nil
 
   after_save :save_tags
+  after_update :save_tags
+  before_update :parse_body
+
+  private def parse_body
+    return if body.nil?
+    parser = MarkdownParser.new body
+
+    self.title = parser.title
+    self.tag_names = parser.tags
+  end
 
   private def save_tags
     return if tag_names.nil?
