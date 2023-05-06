@@ -16,6 +16,6 @@ h1 New Note
     .form-group
       == text_area(name: "title", content: note.title, placeholder: "Title", class: "form-control")
     .form-group
-      == text_area(name: "tags", content: "" , placeholder: "Tags", class: "form-control")
+      == text_area(name: "tags", content: "" , placeholder: "Tags separated with commas", class: "form-control")
     == submit("Submit", class: "btn btn-success btn-sm")
 

@@ -481,10 +481,11 @@ body {
 .icon-input {
   display: none;
   & + .icon-input-lable {
+    color: $info;
   }
   &:checked + .icon-input-lable {
     font-weight: bold;
-    color: $pink;
+    color: $red;
   }
 }
 
@@ -512,5 +513,30 @@ h2 {
   a {
     color: $font;
     text-decoration: none;
+  }
+}
+
+.form-control {
+  background-color: $dark !important;
+  color: $white !important;
+  border: 1px solid $background-lighter !important;
+}
+
+.table {
+  border-radius: 10px;
+  background-color: $dark !important;
+  color: $white !important;
+  border: 1px solid $background-lighter !important;
+
+  & th {
+    background-color: $red !important;
+    color: $white !important;
+    border: 1px solid $red !important;
+  }
+
+  & td {
+    background-color: $dark !important;
+    color: $white !important;
+    border: 1px solid $background-lighter !important;
   }
 }

@@ -17,6 +17,8 @@ targets:
     main: lib/amber/src/amber/cli.cr
 
 dependencies:
+  sidekiq:
+    github: mperham/sidekiq.cr
   crest:
     github: mamantoha/crest
   jwt:
