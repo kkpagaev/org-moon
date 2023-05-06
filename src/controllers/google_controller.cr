@@ -18,7 +18,7 @@ class GoogleController < ApplicationController
     tokens.save!
 
     session[:user_id] = user.id
-    flash[:info] = "Successfully logged in"
+    flash[:info] = "Successfully logged in with Google"
     redirect_to "/"
   end
 end
