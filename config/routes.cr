@@ -38,6 +38,7 @@ Amber::Server.configure do
     post "/session", SessionController, :create
     get "/signup", UserController, :new
     post "/registration", UserController, :create
+    get "/oauth2/callback", GoogleController, :callback
   end
 
   routes :auth do
