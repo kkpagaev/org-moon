@@ -44,6 +44,6 @@ module Google
       "grant_type" => "authorization_code",
     }, json: true)
 
-    res.body
+    Hash(String, String | Int32).from_json(res.body)
   end
 end

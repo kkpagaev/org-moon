@@ -49,6 +49,14 @@ class User < Granite::Base
     (bcrypt_pass = self.password) ? bcrypt_pass.verify(password) : false
   end
 
+  def self.find_or_create!(email : String)
+    user = User.find_by email: email
+    return user if user
+    user = User.new email: email
+    user.save!
+    user
+  end
+
   private getter new_password : String?
 
   private def create_default_books
