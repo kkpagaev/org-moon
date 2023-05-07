@@ -1,6 +1,7 @@
 require "moon-markdown"
 require "crest"
 require "sidekiq"
+require "sidekiq/cli"
 
 # Monkey patch to use connection pool
 class Redis::PooledClient
@@ -18,6 +19,15 @@ require "../config/application"
 require "./markdown"
 
 Sidekiq::Client.default_context = Sidekiq::Client::Context.new
+if ENV["RUN_SIDEKIQ"]?
+  cli = Sidekiq::CLI.new
+  server = cli.configure do |config|
+    # middleware would be added here
+    config.redis = Sidekiq::RedisConfig.new("localhost", 6379)
+  end
 
-Amber::Support::ClientReload.new if Amber.settings.auto_reload?
-Amber::Server.start
+  cli.run(server)
+else
+  Amber::Support::ClientReload.new if Amber.settings.auto_reload?
+  Amber::Server.start
+end

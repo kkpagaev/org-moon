@@ -11,6 +11,22 @@ services:
       - 3000:3000
     links:
       - db
+      - redis
+    volumes:
+      - .:/app
+      - nodes:/app/node_modules
+      - shards:/app/lib
+
+  sidekiq:
+    build: .
+    image: amber-moon
+    command: amber watch
+    environment:
+      RUN_SIDEKIQ: true
+      DATABASE_URL: postgres://postgres:password@db:5432/amber_moon_development
+    links:
+      - db
+      - redis
     volumes:
       - .:/app
       - nodes:/app/node_modules
