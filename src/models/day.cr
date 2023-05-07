@@ -33,6 +33,9 @@ class Day < Granite::Base
   after_save :sync_with_google_calendar
 
   private def sync_with_google_calendar
+    if day_id = id
+      GoogleCaledarWorker.async.perform(day_id)
+    end
   end
 
   def default
