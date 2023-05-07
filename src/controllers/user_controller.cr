@@ -36,7 +36,12 @@ class UserController < ApplicationController
   end
 
   def update
-    user.set_attributes user_params.validate!
+    unless params["password"] == params["password_confirmation"]
+      flash[:danger] = "Passwords do not match!"
+      return render "edit.slang"
+    end
+
+    user.set_attributes user_update_params.validate!
     if user.save
       redirect_to "/", flash: {"success" => "User has been updated."}
     else
@@ -54,6 +59,12 @@ class UserController < ApplicationController
     params.validation do
       required :email
       optional :password
+    end
+  end
+
+  private def user_update_params
+    params.validation do
+      required :password
     end
   end
 

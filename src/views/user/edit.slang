@@ -1,4 +1,4 @@
-h1 Edit Profile
+h1 Change Password
 
 - if user.errors
   ul.errors
@@ -8,6 +8,8 @@ h1 Edit Profile
 == form(action: "/profile", method: :patch) do
   == csrf_tag
   .form-group
-    input.form-control type="email" name="email" placeholder="Email" value="#{user.email}"
+    input.form-control type="password" name="password" placeholder="Password"
+  .form-group
+    input.form-control type="password" name="password_confirmation" placeholder="Password Confirmation"
   == submit("Update", class: "btn btn-success btn-sm")
   == link_to("Profile", "/profile", class: "btn btn-light btn-sm")
