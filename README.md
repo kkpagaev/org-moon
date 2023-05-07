@@ -26,14 +26,13 @@ This is a project written using [Amber](https://amberframework.org). Enjoy!
 - [X] Move jwt secret to env
 - [ ] Fix SQL injections
 - [X] Make jwt token expire
-- [ ] Calendar google sync
-  - [ ] Google api integration
-    - [ ] Create google api client
-    - [ ] [google-api](https://github.com/PlaceOS/google)
-    - [ ] Add sync to google calendar
-    - [ ] Ask for google calendar permissions
-  - [ ] Add [sidekiq.cr](https://github.com/hugopl/sidekiq.cr)
-    - [ ] Sync calendar using sidekiq
+- [X] Calendar google sync
+  - [X] Google api integration
+    - [X] Create google api client
+    - [X] Add sync to google calendar
+    - [X] Ask for google calendar permissions
+  - [X] Add [sidekiq.cr](https://github.com/hugopl/sidekiq.cr)
+    - [X] Sync calendar using sidekiq
 - [ ] Add Dockerfile
   - [ ] CI/CD
     - [ ] Build docker image and push to docker hub
