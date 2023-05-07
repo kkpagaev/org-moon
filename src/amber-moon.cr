@@ -10,6 +10,7 @@ class Redis::PooledClient
     end
   end
 end
+
 require "./google/*"
 
 require "./workers/*"

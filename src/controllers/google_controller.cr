@@ -23,10 +23,9 @@ class GoogleController < ApplicationController
   end
 
   def test
-    token = Tokens.find_by!(user_id: current_user!.id)
-
-    calendar = Google.add_calendar token.access_token
-
-    Google.add_event token.access_token, calendar["id"]
+    c = GoogleCalendar.find_or_create(current_user!.id)
+    c.add_event
+    c.list_events
+    # c.list_events
   end
 end

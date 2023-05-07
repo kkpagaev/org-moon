@@ -22,4 +22,3 @@ Google.config do |config|
   # move to env
   config.redirect_uri = "http://localhost:3000/oauth2/callback"
 end
-

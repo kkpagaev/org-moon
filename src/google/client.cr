@@ -37,11 +37,11 @@ module Google
     config = self.config
 
     res = Crest.post(config.token_uri, {
-      "code" => code,
-      "client_id" => config.client_id,
+      "code"          => code,
+      "client_id"     => config.client_id,
       "client_secret" => config.client_secret,
-      "redirect_uri" => config.redirect_uri,
-      "grant_type" => "authorization_code",
+      "redirect_uri"  => config.redirect_uri,
+      "grant_type"    => "authorization_code",
     }, json: true)
 
     Hash(String, String | Int32).from_json(res.body)
@@ -52,17 +52,16 @@ module Google
       "summary" => "Test Calendar",
     },
       headers: {
-        "Authorization" => "Bearer #{token}"
+        "Authorization" => "Bearer #{token}",
       },
       json: true)
     JSON.parse(res.body)
   end
 
-
   def self.add_event(token, calendar_id)
     res = Crest.post("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events", {
       "summary" => "Test Event",
-      "start" => {
+      "start"   => {
         "dateTime" => "2023-05-09T13:00:00",
         "timeZone" => "America/Los_Angeles",
       },
@@ -72,8 +71,17 @@ module Google
       },
     },
       headers: {
-        "Authorization" => "Bearer #{token}"
+        "Authorization" => "Bearer #{token}",
       },
       json: true)
+  end
+
+  def self.list_events(token, calendar_id)
+    res = Crest.get("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events",
+      headers: {
+        "Authorization" => "Bearer #{token}",
+      },
+      json: true)
+    JSON.parse(res.body)
   end
 end

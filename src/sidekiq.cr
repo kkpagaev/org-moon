@@ -8,6 +8,7 @@ require "./google/*"
 
 require "../config/application"
 require "./markdown"
+
 # Monkey patch to use connection pool
 class Redis::PooledClient
   def initialize(*args, pool_size = 5, pool_timeout = 5.seconds, **args2)
@@ -24,4 +25,3 @@ server = cli.configure do |config|
 end
 
 cli.run(server)
-

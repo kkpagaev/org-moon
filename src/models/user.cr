@@ -8,6 +8,8 @@ class User < Granite::Base
   has_many books : Book, foreign_key: :user_id
   has_many notes : Note, foreign_key: :user_id
 
+  has_one tokens : Tokens, foreign_key: :user_id
+
   column id : Int64, primary: true
   column email : String?
   column hashed_password : String?

@@ -7,4 +7,3 @@ class GoogleCaledarWorker
     end
   end
 end
-

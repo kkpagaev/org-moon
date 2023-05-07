@@ -13,7 +13,6 @@ module NoteBuilder
     end
   end
 
-
   class Calendar < Base
     def body : String
       list_builder = Markdown::Builder::EventList.new([
