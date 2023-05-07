@@ -46,4 +46,34 @@ module Google
 
     Hash(String, String | Int32).from_json(res.body)
   end
+
+  def self.add_calendar(token)
+    res = Crest.post("https://www.googleapis.com/calendar/v3/calendars", {
+      "summary" => "Test Calendar",
+    },
+      headers: {
+        "Authorization" => "Bearer #{token}"
+      },
+      json: true)
+    JSON.parse(res.body)
+  end
+
+
+  def self.add_event(token, calendar_id)
+    res = Crest.post("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events", {
+      "summary" => "Test Event",
+      "start" => {
+        "dateTime" => "2023-05-09T13:00:00",
+        "timeZone" => "America/Los_Angeles",
+      },
+      "end" => {
+        "dateTime" => "2023-05-09T19:00:00",
+        "timeZone" => "America/Los_Angeles",
+      },
+    },
+      headers: {
+        "Authorization" => "Bearer #{token}"
+      },
+      json: true)
+  end
 end
