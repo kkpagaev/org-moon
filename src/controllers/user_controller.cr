@@ -41,7 +41,7 @@ class UserController < ApplicationController
       return render "edit.slang"
     end
 
-    user.set_attributes user_update_params.validate!
+    user.password = params["password"]
     if user.save
       redirect_to "/", flash: {"success" => "User has been updated."}
     else
