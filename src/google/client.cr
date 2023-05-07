@@ -29,7 +29,7 @@ module Google
       s << "&response_type=code"
       s << "&access_type=offline&prompt=consent"
       s << "&scope=https://www.googleapis.com/auth/userinfo.email "
-      s << "https://www.googleapis.com/auth/admin.directory.resource.calendar"
+      s << "https://www.googleapis.com/auth/calendar"
     end
   end
 

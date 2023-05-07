@@ -26,6 +26,11 @@ class Day < Granite::Base
 
   getter page : Markdown::Page::Day | Nil = nil
 
+  after_save :sync_with_google_calendar
+
+  private def sync_with_google_calendar
+  end
+
   def default
     book = Book.find_by! user_id: user_id, title: "Calendar", is_system: true
     tags = [date.day_name]

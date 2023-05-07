@@ -39,6 +39,7 @@ Amber::Server.configure do
     get "/signup", UserController, :new
     post "/registration", UserController, :create
     get "/oauth2/callback", GoogleController, :callback
+    get "/test", GoogleController, :test
   end
 
   routes :auth do

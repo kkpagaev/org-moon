@@ -6,9 +6,7 @@ module Sample
 
     def perform(name : String, count : Int64)
       count.times do
-        logger.info do
-          "Hello, #{name}!"
-        end
+        puts "Hello #{name}"
       end
     end
   end

@@ -21,4 +21,10 @@ class GoogleController < ApplicationController
     flash[:info] = "Successfully logged in with Google"
     redirect_to "/"
   end
+
+  def test
+    token = Tokens.first!
+
+    token.access_token
+  end
 end

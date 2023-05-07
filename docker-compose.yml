@@ -7,10 +7,13 @@ services:
     command: amber watch
     environment:
       DATABASE_URL: postgres://postgres:password@db:5432/amber_moon_development
+      REDIS_PROVIDER: REDIS_PROVIDERR
+      REDIS_PROVIDERR: redis://redis:6379/0
     ports:
       - 3000:3000
     links:
       - db
+      - redis
     volumes:
       - .:/app
       - nodes:/app/node_modules
