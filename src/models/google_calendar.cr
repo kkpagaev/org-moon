@@ -19,14 +19,30 @@ class GoogleCalendar < Granite::Base
     calendar
   end
 
-  def list_events
+  def list_events(date)
     token = user.tokens!.access_token
-    Google.list_events token, google_id
+
+    Google.list_events token, google_id, date
   end
 
-  def add_event
+  def add_event(event)
     token = user.tokens!.access_token
-    Google.add_event token, google_id
+    Google.add_event token, google_id, event
+  end
+
+  def delete_events(date)
+    ids = [] of String
+    list_events(date)["items"].as_a.each do |event|
+      ids << event["id"].to_s
+    end
+    ids.each do |id|
+      delete_event(id)
+    end
+  end
+
+  private def delete_event(id)
+    token = user.tokens!.access_token
+    Google.delete_event token, google_id, id
   end
 
   timestamps

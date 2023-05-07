@@ -6,6 +6,10 @@ module Markdown::Page
 end
 
 class String
+  def day_to_date
+    Time.parse(self, "%d.%m.%Y", Time::Location::UTC)
+  end
+
   def day_name
     Time.parse(self, "%d.%m.%Y", Time::Location::UTC).day_name
   end

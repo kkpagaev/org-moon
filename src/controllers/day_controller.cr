@@ -21,6 +21,14 @@ class DayController < ApplicationController
       save_day_params.validate!
       day.page = params[:body]
       day.save!
+
+      c = GoogleCalendar.find_or_create(current_user!.id)
+      c.delete_events(day.date.day_to_date)
+
+      day.events.each do |event|
+        c.add_event(event)
+      end
+
       flash[:success] = "Saved"
       redirect_to "/day/#{params[:date]}"
     rescue e

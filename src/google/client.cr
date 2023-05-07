@@ -58,16 +58,19 @@ module Google
     JSON.parse(res.body)
   end
 
-  def self.add_event(token, calendar_id)
+  def self.add_event(token, calendar_id, event : Event)
+    start = (event.start_at - 3.hour).to_rfc3339
+    end_at = (e = event.end_at) ? (e - 3.hour).to_rfc3339 : (event.start_at - 3.hour).to_rfc3339
     res = Crest.post("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events", {
-      "summary" => "Test Event",
+      "summary" => event.title,
+      "description" => event.description,
       "start"   => {
-        "dateTime" => "2023-05-09T13:00:00",
-        "timeZone" => "America/Los_Angeles",
+        "dateTime" => start,
+        "timeZone" => "Europe/Kiev",
       },
       "end" => {
-        "dateTime" => "2023-05-09T19:00:00",
-        "timeZone" => "America/Los_Angeles",
+        "dateTime" => end_at,
+        "timeZone" => "Europe/Kiev",
       },
     },
       headers: {
@@ -76,12 +79,25 @@ module Google
       json: true)
   end
 
-  def self.list_events(token, calendar_id)
-    res = Crest.get("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events",
+  def self.list_events(token, calendar_id, date)
+    query = String.build do |s|
+      s << "timeMax=#{(date + 1.day).to_rfc3339}"
+      s << "&timeMin=#{date.to_rfc3339}"
+    end
+
+    res = Crest.get("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events?#{query}",
       headers: {
         "Authorization" => "Bearer #{token}",
       },
       json: true)
     JSON.parse(res.body)
+  end
+
+  def self.delete_event(token, calendar_id, event_id)
+    res = Crest.delete("https://www.googleapis.com/calendar/v3/calendars/#{calendar_id}/events/#{event_id}",
+      headers: {
+        "Authorization" => "Bearer #{token}",
+      },
+    )
   end
 end
