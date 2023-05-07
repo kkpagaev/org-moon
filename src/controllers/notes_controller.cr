@@ -6,6 +6,7 @@ class NoteController < ApplicationController
   end
 
   def index
+    Sample::MyWorker.async.perform("world", 3_i64)
     book = Book.find params[:book_id]?
     tag_id = params[:tag_id]?
     if book

@@ -2,7 +2,7 @@ version: 2.0
 shards:
   amber:
     git: https://github.com/amberframework/amber.git
-    version: 1.3.2+git.commit.33ff2e1585cd4e2c8f9047c39a824a426e2944f1
+    version: 1.3.2+git.commit.d7333fc74bed98574038ab2376186975f06fd677
 
   amber_router:
     git: https://github.com/amberframework/amber-router.git
@@ -18,7 +18,7 @@ shards:
 
   baked_file_system:
     git: https://github.com/schovi/baked_file_system.git
-    version: 0.10.0
+    version: 0.9.8+git.commit.7183bfde8d86a976a6912f582b51cbd1783456af
 
   bindata:
     git: https://github.com/spider-gazelle/bindata.git
@@ -42,7 +42,7 @@ shards:
 
   crest:
     git: https://github.com/mamantoha/crest.git
-    version: 1.3.8
+    version: 1.3.9
 
   db:
     git: https://github.com/crystal-lang/crystal-db.git
@@ -74,7 +74,7 @@ shards:
 
   http_proxy:
     git: https://github.com/mamantoha/http_proxy.git
-    version: 0.9.0
+    version: 0.10.1
 
   i18n:
     git: https://github.com/dare892/i18n.cr.git
@@ -98,11 +98,11 @@ shards:
 
   kemal:
     git: https://github.com/kemalcr/kemal.git
-    version: 1.4.0
+    version: 1.3.0
 
   kemal-csrf:
     git: https://github.com/kemalcr/kemal-csrf.git
-    version: 1.0.0
+    version: 0.8.0+git.commit.abaee30f1e8e28d896ed6bf5267a530b5d6ca638
 
   kemal-session:
     git: https://github.com/kemalcr/kemal-session.git
@@ -170,7 +170,7 @@ shards:
 
   sidekiq:
     git: https://github.com/mperham/sidekiq.cr.git
-    version: 0.7.2
+    version: 0.7.1
 
   slang:
     git: https://github.com/jeromegn/slang.git
