@@ -11,7 +11,7 @@ module JWT
   end
 
   def decode(token)
-    self.decode(token, key: @@secret, verify: true, validate: true)
+    self.decode(token, key: @@secret, verify: true, validate: true, algorithm: JWT::Algorithm::HS256)
   end
 
   def config

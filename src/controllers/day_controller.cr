@@ -13,7 +13,10 @@ class DayController < ApplicationController
 
   def editor
     note = day.note_id ? day.note : day.default
-    render "edit.slang"
+    respond_with do
+      html render "edit.slang"
+      json note.to_json
+    end
   end
 
   def save
