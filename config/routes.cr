@@ -1,5 +1,5 @@
 Amber::Server.configure do
-  pipeline :web, :auth do
+  pipeline :web, :auth, :api_auth do
     # Plug is the method to use connect a pipe (middleware)
     # A plug accepts an instance of HTTP::Handler
     # plug Amber::Pipe::PoweredByAmber.new
@@ -9,12 +9,15 @@ Amber::Server.configure do
     plug Amber::Pipe::Logger.new
     plug Amber::Pipe::Session.new
     plug Amber::Pipe::Flash.new
-    plug Amber::Pipe::CSRF.new
 
     plug CurrentUser.new
   end
 
-  pipeline :auth do
+  pipeline :web do
+    plug Amber::Pipe::CSRF.new
+  end
+
+  pipeline :auth, :api_auth do
     plug Authenticate.new
   end
 
@@ -62,6 +65,10 @@ Amber::Server.configure do
 
   routes :api do
     post "/api/signin", SessionController, :create_api
+  end
+
+  routes :api_auth do
+    post "/api/day/:date", DayController, :save
   end
 
   routes :static do

@@ -25,11 +25,23 @@ class DayController < ApplicationController
       day.page = params[:body]
       day.save!
 
-      flash[:success] = "Saved"
-      redirect_to "/day/#{params[:date]}"
+      respond_with do
+        html do
+          flash[:success] = "Saved"
+          redirect_to "/day/#{params[:date]}"
+        end
+        json ({success: true}).to_json
+      end
     rescue e
-      flash[:danger] = "Error: #{e.message}"
-      editor
+      respond_with do
+        html do
+          flash[:danger] = "Error: #{e.message}"
+          editor
+        end
+        json do
+          {success: false, error: e.message}.to_json
+        end
+      end
     end
   end
 
