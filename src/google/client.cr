@@ -49,7 +49,7 @@ module Google
 
   def self.add_calendar(token)
     res = Crest.post("https://www.googleapis.com/calendar/v3/calendars", {
-      "summary" => "Test Calendar",
+      "summary" => "Org-Moon",
     },
       headers: {
         "Authorization" => "Bearer #{token}",
