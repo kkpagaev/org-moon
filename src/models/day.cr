@@ -34,7 +34,16 @@ class Day < Granite::Base
 
   private def sync_with_google_calendar
     if day_id = id
-      GoogleCaledarWorker.async.perform(day_id)
+      day = Day.find!(day_id)
+      c = GoogleCalendar.find_or_create(day.user_id)
+   
+ 
+
+      c.delete_events(day.date.day_to_date)
+
+      day.events.each do |event|
+        c.add_event(event)
+      end
     end
   end
 

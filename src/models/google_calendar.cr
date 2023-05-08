@@ -11,7 +11,7 @@ class GoogleCalendar < Granite::Base
     calendar = GoogleCalendar.find_by(user_id: user_id)
     if calendar.nil?
       calendar = GoogleCalendar.new(user_id: user_id)
-      token = Tokens.find_by!(user_id: user_id).access_token
+      token = Tokens.find_by!(user_id: user_id).access_token_or_refresh_it!
       res = Google.add_calendar token
       calendar.google_id = res["id"].to_s
       calendar.save
@@ -20,13 +20,13 @@ class GoogleCalendar < Granite::Base
   end
 
   def list_events(date)
-    token = user.tokens!.access_token
+    token = user.tokens!.access_token_or_refresh_it!
 
     Google.list_events token, google_id, date
   end
 
   def add_event(event)
-    token = user.tokens!.access_token
+    token = user.tokens!.access_token_or_refresh_it!
     Google.add_event token, google_id, event
   end
 
@@ -41,7 +41,7 @@ class GoogleCalendar < Granite::Base
   end
 
   private def delete_event(id)
-    token = user.tokens!.access_token
+    token = user.tokens!.access_token_or_refresh_it!
     Google.delete_event token, google_id, id
   end
 

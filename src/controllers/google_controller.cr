@@ -23,15 +23,6 @@ class GoogleController < ApplicationController
   end
 
   def test
-    if date = params[:date]
-      # begin
-        day = Day.find_or_initialize_by(date: date, user_id: current_user!.id)
-        c = GoogleCalendar.find_or_create(current_user!.id)
-        # c.add_event
-        ids = c.delete_events(date.day_to_date)
-      # rescue e
-      #   e.message
-      # end
-    end
+    Tokens.first!.refresh
   end
 end

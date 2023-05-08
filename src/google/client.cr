@@ -100,4 +100,18 @@ module Google
       },
     )
   end
+
+  def self.refresh_tokens(refresh_token)
+    config = self.config
+
+    puts "refreshing tokens"
+    res = Crest.post("https://oauth2.googleapis.com/token", {
+      "client_id"     => config.client_id,
+      "client_secret" => config.client_secret,
+      "grant_type"    => "refresh_token",
+      "refresh_token" => refresh_token,
+    }, json: true)
+
+    Hash(String, String | Int32).from_json(res.body)
+  end
 end
