@@ -31,19 +31,11 @@ class Day < Granite::Base
   getter page : Markdown::Page::Day | Nil = nil
 
   after_save :sync_with_google_calendar
+  after_update :sync_with_google_calendar
 
   private def sync_with_google_calendar
     if day_id = id
-      day = Day.find!(day_id)
-      c = GoogleCalendar.find_or_create(day.user_id)
-   
- 
-
-      c.delete_events(day.date.day_to_date)
-
-      day.events.each do |event|
-        c.add_event(event)
-      end
+      GoogleCaledarWorker.async.perform day_id
     end
   end
 
