@@ -16,3 +16,6 @@ form action="/registration" method="post"
     | Register
 <hr/>
 == link_to("Already have an account?", "/signin")
+br
+a href="#{Google.url}"
+  | Sign in with Google

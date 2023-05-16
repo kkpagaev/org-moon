@@ -14,5 +14,6 @@ form action="/session" method="post"
   button.btn.btn-success.btn-sm type="submit" Sign In
 <hr/>
 == link_to("Don't have an account yet?", "/signup")
+br
 a href="#{Google.url}"
-  Sign in with Google
+  | Sign in with Google
